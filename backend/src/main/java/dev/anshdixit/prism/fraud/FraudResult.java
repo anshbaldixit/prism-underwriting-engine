@@ -9,7 +9,21 @@ public record FraudResult(Outcome outcome, int points, List<FiredRule> firedRule
     public record FiredRule(String id, String name, String signal, int points) {
     }
 
-    /** Human-readable verification tasks derived from the signal families that fired. */
+    /** What the applicant is told - never internal detail such as device velocity. */
+    public List<String> applicantFacingItems() {
+        return firedRules.stream()
+                .map(FiredRule::signal)
+                .distinct()
+                .map(signal -> switch (signal) {
+                    case "veracity" -> "Provide a recent pay stub or tax document to confirm your income";
+                    case "synthetic-identity" -> "Complete a short identity verification (photo ID and selfie)";
+                    default -> "A brief additional review of your application";
+                })
+                .distinct()
+                .toList();
+    }
+
+    /** Internal verification tasks for the underwriter, derived from the signal families that fired. */
     public List<String> verificationItems() {
         return firedRules.stream()
                 .map(FiredRule::signal)

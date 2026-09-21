@@ -45,13 +45,16 @@ public class ExplanationService {
 
     public GuardrailService.Guarded adverseActionNotice(Inputs in) {
         Map<String, Object> ctx = baseContext(in);
+        List<String> applicantItems = in.outcome().basis() == DecisionPolicyService.Basis.VERIFICATION_REQUIRED
+                || in.outcome().basis() == DecisionPolicyService.Basis.FRAUD_BLOCK ? in.fraud().applicantFacingItems() : in.outcome().verificationItems();
+        ctx.put("verificationItems", applicantItems);
         Map<String, Object> vars = new HashMap<>();
         vars.put("decision", in.outcome().decision().name());
         vars.put("basis", in.outcome().basis().name());
         vars.put("requestedAmount", String.format("%,.0f", in.requestedAmount()));
         vars.put("offerLine", in.outcome().creditLimit() == null ? "" :
                 String.format("Offer: credit line $%,.0f at %.2f%% APR", in.outcome().creditLimit(), in.outcome().apr()));
-        vars.put("verificationItems", in.outcome().verificationItems().isEmpty() ? "none" : String.join("; ", in.outcome().verificationItems()));
+        vars.put("verificationItems", applicantItems.isEmpty() ? "none" : String.join("; ", applicantItems));
         vars.put("reasonsBlock", reasonsBlock(in.score()));
         return guardrails.generate(new LlmRequest(LlmTask.ADVERSE_ACTION_NOTICE, prompts.system(LlmTask.ADVERSE_ACTION_NOTICE),
                 prompts.user(LlmTask.ADVERSE_ACTION_NOTICE, vars), ctx, maxTokens), in.applicationId());
