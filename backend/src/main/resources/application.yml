@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: prism-backend
+  datasource:
+    url: ${PRISM_DB_URL:jdbc:postgresql://localhost:5432/prism}
+    username: ${PRISM_DB_USER:prism}
+    password: ${PRISM_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+  mvc:
+    problemdetails:
+      enabled: true
+
+server:
+  port: ${PRISM_PORT:8080}
+  error:
+    include-stacktrace: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when_authorized
+
+logging:
+  level:
+    dev.anshdixit.prism: INFO
+
+prism:
+  security:
+    # Never defaulted: the app refuses to start without a >= 32 char secret (see PrismProperties).
+    jwt-secret: ${PRISM_JWT_SECRET}
+    token-ttl-minutes: 480
+    # Password for the three seeded demo users. If empty, a random one is generated and logged once.
+    seed-password: ${PRISM_SEED_PASSWORD:}
+    cors-origins: ${PRISM_CORS_ORIGINS:http://localhost:5173}
+  ai:
+    # bedrock | anthropic | offline   (offline = deterministic template explainer, no network)
+    provider: ${PRISM_AI_PROVIDER:offline}
+    # bedrock | offline   (offline = hashed n-gram embeddings; same 1024 dimensions as Titan v2)
+    embedding-provider: ${PRISM_EMBEDDING_PROVIDER:offline}
+    max-output-tokens: 1200
+    timeout-seconds: 30
+    bedrock:
+      region: ${AWS_REGION:us-east-1}
+      model-id: ${PRISM_BEDROCK_MODEL_ID:us.anthropic.claude-haiku-4-5-20251001-v1:0}
+      embedding-model-id: ${PRISM_BEDROCK_EMBEDDING_MODEL_ID:amazon.titan-embed-text-v2:0}
+      guardrail-id: ${PRISM_BEDROCK_GUARDRAIL_ID:}
+      guardrail-version: ${PRISM_BEDROCK_GUARDRAIL_VERSION:DRAFT}
+    anthropic:
+      model: ${PRISM_ANTHROPIC_MODEL:claude-opus-5}
