@@ -1,0 +1,864 @@
+{
+  "model_id": "prism-scorecard",
+  "version": "1.0.0",
+  "trained_at": "2026-09-21T11:18:24+00:00",
+  "algorithm": "Weight-of-Evidence binned logistic regression (additive scorecard)",
+  "target": "12-month serious delinquency",
+  "intercept": -1.87721,
+  "scaling": {
+    "base_score": 600,
+    "base_odds": 30,
+    "pdo": 20
+  },
+  "features": [
+    {
+      "name": "bureau_score",
+      "label": "Credit bureau score",
+      "modality": "bureau",
+      "reason_code": "R01",
+      "missing_reason_code": "R19",
+      "coefficient": 0.329679,
+      "information_value": 0.7447,
+      "missing_woe": 0.0263,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 622.7371,
+          "woe": 1.2428,
+          "count": 2361
+        },
+        {
+          "lo": 622.7371,
+          "hi": 655.0144,
+          "woe": 0.4557,
+          "count": 2360
+        },
+        {
+          "lo": 655.0144,
+          "hi": 682.1917,
+          "woe": -0.175,
+          "count": 2360
+        },
+        {
+          "lo": 682.1917,
+          "hi": 708.5864,
+          "woe": -0.5612,
+          "count": 2360
+        },
+        {
+          "lo": 708.5864,
+          "hi": 741.3806,
+          "woe": -1.2232,
+          "count": 2360
+        },
+        {
+          "lo": 741.3806,
+          "hi": null,
+          "woe": -2.5211,
+          "count": 2361
+        }
+      ]
+    },
+    {
+      "name": "months_on_file",
+      "label": "Length of credit history",
+      "modality": "bureau",
+      "reason_code": "R02",
+      "missing_reason_code": "R19",
+      "coefficient": 0.173894,
+      "information_value": 0.0515,
+      "missing_woe": 0.0313,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 15.2493,
+          "woe": 0.1606,
+          "count": 2567
+        },
+        {
+          "lo": 15.2493,
+          "hi": 58.3597,
+          "woe": 0.25,
+          "count": 2566
+        },
+        {
+          "lo": 58.3597,
+          "hi": 120.7168,
+          "woe": 0.094,
+          "count": 2567
+        },
+        {
+          "lo": 120.7168,
+          "hi": 181.1229,
+          "woe": -0.1601,
+          "count": 2566
+        },
+        {
+          "lo": 181.1229,
+          "hi": 240.2097,
+          "woe": 0.0213,
+          "count": 2566
+        },
+        {
+          "lo": 240.2097,
+          "hi": null,
+          "woe": -0.5876,
+          "count": 2567
+        }
+      ]
+    },
+    {
+      "name": "tradelines",
+      "label": "Number of credit accounts",
+      "modality": "bureau",
+      "reason_code": "R03",
+      "missing_reason_code": "R19",
+      "coefficient": 0.165025,
+      "information_value": 0.095,
+      "missing_woe": 0.0313,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 1.0,
+          "woe": -0.0207,
+          "count": 1358
+        },
+        {
+          "lo": 1.0,
+          "hi": 3.0,
+          "woe": -0.0352,
+          "count": 2649
+        },
+        {
+          "lo": 3.0,
+          "hi": 6.0,
+          "woe": 0.4739,
+          "count": 2876
+        },
+        {
+          "lo": 6.0,
+          "hi": 9.0,
+          "woe": 0.0016,
+          "count": 2889
+        },
+        {
+          "lo": 9.0,
+          "hi": 12.0,
+          "woe": -0.0328,
+          "count": 2863
+        },
+        {
+          "lo": 12.0,
+          "hi": null,
+          "woe": -0.7433,
+          "count": 2764
+        }
+      ]
+    },
+    {
+      "name": "inquiries_6m",
+      "label": "Recent credit inquiries",
+      "modality": "bureau",
+      "reason_code": "R04",
+      "missing_reason_code": "R19",
+      "coefficient": 0.21609,
+      "information_value": 0.1065,
+      "missing_woe": 0.0316,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 0.0,
+          "woe": 1.8495,
+          "count": 0
+        },
+        {
+          "lo": 0.0,
+          "hi": 1.0,
+          "woe": -0.4484,
+          "count": 5985
+        },
+        {
+          "lo": 1.0,
+          "hi": 2.0,
+          "woe": -0.0438,
+          "count": 5321
+        },
+        {
+          "lo": 2.0,
+          "hi": null,
+          "woe": 0.4825,
+          "count": 4093
+        }
+      ]
+    },
+    {
+      "name": "delinquencies_24m",
+      "label": "Recent delinquencies on file",
+      "modality": "bureau",
+      "reason_code": "R05",
+      "missing_reason_code": "R19",
+      "coefficient": 0.057394,
+      "information_value": 0.1568,
+      "missing_woe": 0.0318,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 0.0,
+          "woe": 1.8497,
+          "count": 0
+        },
+        {
+          "lo": 0.0,
+          "hi": 1.0,
+          "woe": -0.4031,
+          "count": 10119
+        },
+        {
+          "lo": 1.0,
+          "hi": null,
+          "woe": 0.5276,
+          "count": 5280
+        }
+      ]
+    },
+    {
+      "name": "income_cv",
+      "label": "Income stability (month-to-month volatility)",
+      "modality": "cashflow",
+      "reason_code": "R06",
+      "missing_reason_code": "R20",
+      "coefficient": 0.334097,
+      "information_value": 0.8449,
+      "missing_woe": 0.009,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 0.1696,
+          "woe": -2.0167,
+          "count": 2997
+        },
+        {
+          "lo": 0.1696,
+          "hi": 0.2544,
+          "woe": -1.1136,
+          "count": 3001
+        },
+        {
+          "lo": 0.2544,
+          "hi": 0.3211,
+          "woe": -0.6091,
+          "count": 2999
+        },
+        {
+          "lo": 0.3211,
+          "hi": 0.3892,
+          "woe": -0.2244,
+          "count": 2994
+        },
+        {
+          "lo": 0.3892,
+          "hi": 0.4732,
+          "woe": 0.4539,
+          "count": 3003
+        },
+        {
+          "lo": 0.4732,
+          "hi": null,
+          "woe": 1.2561,
+          "count": 3001
+        }
+      ]
+    },
+    {
+      "name": "monthly_income",
+      "label": "Verified monthly income",
+      "modality": "cashflow",
+      "reason_code": "R07",
+      "missing_reason_code": "R20",
+      "coefficient": 0.2499,
+      "information_value": 0.1451,
+      "missing_woe": 0.009,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 2301.59,
+          "woe": 0.5532,
+          "count": 2999
+        },
+        {
+          "lo": 2301.59,
+          "hi": 2952.07,
+          "woe": 0.2671,
+          "count": 2999
+        },
+        {
+          "lo": 2952.07,
+          "hi": 3603.62,
+          "woe": 0.0545,
+          "count": 2999
+        },
+        {
+          "lo": 3603.62,
+          "hi": 4400.05,
+          "woe": -0.1354,
+          "count": 2999
+        },
+        {
+          "lo": 4400.05,
+          "hi": 5636.93,
+          "woe": -0.4463,
+          "count": 2999
+        },
+        {
+          "lo": 5636.93,
+          "hi": null,
+          "woe": -0.6659,
+          "count": 3000
+        }
+      ]
+    },
+    {
+      "name": "income_months_observed",
+      "label": "Months of verified income history",
+      "modality": "cashflow",
+      "reason_code": "R08",
+      "missing_reason_code": "R20",
+      "coefficient": 1.020882,
+      "information_value": 0.0028,
+      "missing_woe": 0.009,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 4.0,
+          "woe": -0.0049,
+          "count": 1731
+        },
+        {
+          "lo": 4.0,
+          "hi": 6.0,
+          "woe": 0.0079,
+          "count": 3699
+        },
+        {
+          "lo": 6.0,
+          "hi": 7.0,
+          "woe": -0.002,
+          "count": 1793
+        },
+        {
+          "lo": 7.0,
+          "hi": 9.0,
+          "woe": 0.0777,
+          "count": 3621
+        },
+        {
+          "lo": 9.0,
+          "hi": 11.0,
+          "woe": 0.0026,
+          "count": 3591
+        },
+        {
+          "lo": 11.0,
+          "hi": null,
+          "woe": -0.0983,
+          "count": 3560
+        }
+      ]
+    },
+    {
+      "name": "balance_trend",
+      "label": "Account balance trend",
+      "modality": "cashflow",
+      "reason_code": "R09",
+      "missing_reason_code": "R20",
+      "coefficient": 0.167331,
+      "information_value": 0.6093,
+      "missing_woe": 0.009,
+      "bins": [
+        {
+          "lo": null,
+          "hi": -0.0554,
+          "woe": 1.0966,
+          "count": 2995
+        },
+        {
+          "lo": -0.0554,
+          "hi": -0.0094,
+          "woe": 0.345,
+          "count": 2994
+        },
+        {
+          "lo": -0.0094,
+          "hi": 0.0284,
+          "woe": -0.0767,
+          "count": 3006
+        },
+        {
+          "lo": 0.0284,
+          "hi": 0.0644,
+          "woe": -0.4288,
+          "count": 2995
+        },
+        {
+          "lo": 0.0644,
+          "hi": 0.1105,
+          "woe": -0.7783,
+          "count": 3004
+        },
+        {
+          "lo": 0.1105,
+          "hi": null,
+          "woe": -1.7814,
+          "count": 3001
+        }
+      ]
+    },
+    {
+      "name": "min_balance_ratio",
+      "label": "Minimum balance buffer relative to income",
+      "modality": "cashflow",
+      "reason_code": "R10",
+      "missing_reason_code": "R20",
+      "coefficient": 0.141965,
+      "information_value": 0.7758,
+      "missing_woe": 0.009,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 0.0047,
+          "woe": 1.2015,
+          "count": 2999
+        },
+        {
+          "lo": 0.0047,
+          "hi": 0.1363,
+          "woe": 0.4111,
+          "count": 2999
+        },
+        {
+          "lo": 0.1363,
+          "hi": 0.2462,
+          "woe": -0.0918,
+          "count": 2998
+        },
+        {
+          "lo": 0.2462,
+          "hi": 0.3539,
+          "woe": -0.5864,
+          "count": 2999
+        },
+        {
+          "lo": 0.3539,
+          "hi": 0.4939,
+          "woe": -1.0505,
+          "count": 2999
+        },
+        {
+          "lo": 0.4939,
+          "hi": null,
+          "woe": -1.9694,
+          "count": 3001
+        }
+      ]
+    },
+    {
+      "name": "nsf_count_6m",
+      "label": "Overdraft / insufficient-funds events",
+      "modality": "cashflow",
+      "reason_code": "R11",
+      "missing_reason_code": "R20",
+      "coefficient": 0.301847,
+      "information_value": 0.3127,
+      "missing_woe": 0.0095,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 0.0,
+          "woe": 1.8497,
+          "count": 0
+        },
+        {
+          "lo": 0.0,
+          "hi": 1.0,
+          "woe": -0.6064,
+          "count": 10905
+        },
+        {
+          "lo": 1.0,
+          "hi": null,
+          "woe": 0.6016,
+          "count": 7090
+        }
+      ]
+    },
+    {
+      "name": "rent_ontime_ratio",
+      "label": "Rent payment regularity",
+      "modality": "cashflow",
+      "reason_code": "R12",
+      "missing_reason_code": "R20",
+      "coefficient": 0.214044,
+      "information_value": 0.6961,
+      "missing_woe": 0.009,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 0.5175,
+          "woe": 0.9891,
+          "count": 2994
+        },
+        {
+          "lo": 0.5175,
+          "hi": 0.5917,
+          "woe": 0.5253,
+          "count": 2999
+        },
+        {
+          "lo": 0.5917,
+          "hi": 0.6502,
+          "woe": 0.1039,
+          "count": 3003
+        },
+        {
+          "lo": 0.6502,
+          "hi": 0.7104,
+          "woe": -0.4867,
+          "count": 2998
+        },
+        {
+          "lo": 0.7104,
+          "hi": 0.7841,
+          "woe": -1.0576,
+          "count": 3000
+        },
+        {
+          "lo": 0.7841,
+          "hi": null,
+          "woe": -2.0867,
+          "count": 3001
+        }
+      ]
+    },
+    {
+      "name": "utility_ontime_ratio",
+      "label": "Utility payment regularity",
+      "modality": "cashflow",
+      "reason_code": "R13",
+      "missing_reason_code": "R20",
+      "coefficient": 0.141029,
+      "information_value": 0.7117,
+      "missing_woe": 0.009,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 0.5011,
+          "woe": 1.0483,
+          "count": 2999
+        },
+        {
+          "lo": 0.5011,
+          "hi": 0.5756,
+          "woe": 0.5678,
+          "count": 2997
+        },
+        {
+          "lo": 0.5756,
+          "hi": 0.6391,
+          "woe": -0.0415,
+          "count": 2999
+        },
+        {
+          "lo": 0.6391,
+          "hi": 0.7036,
+          "woe": -0.5516,
+          "count": 3001
+        },
+        {
+          "lo": 0.7036,
+          "hi": 0.7788,
+          "woe": -1.0641,
+          "count": 2999
+        },
+        {
+          "lo": 0.7788,
+          "hi": null,
+          "woe": -1.9379,
+          "count": 3000
+        }
+      ]
+    },
+    {
+      "name": "telco_ontime_ratio",
+      "label": "Phone bill payment regularity",
+      "modality": "cashflow",
+      "reason_code": "R14",
+      "missing_reason_code": "R20",
+      "coefficient": 0.175885,
+      "information_value": 0.6896,
+      "missing_woe": 0.009,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 0.5217,
+          "woe": 1.072,
+          "count": 2995
+        },
+        {
+          "lo": 0.5217,
+          "hi": 0.5894,
+          "woe": 0.4788,
+          "count": 3003
+        },
+        {
+          "lo": 0.5894,
+          "hi": 0.6501,
+          "woe": 0.0012,
+          "count": 2993
+        },
+        {
+          "lo": 0.6501,
+          "hi": 0.7097,
+          "woe": -0.5218,
+          "count": 3002
+        },
+        {
+          "lo": 0.7097,
+          "hi": 0.7803,
+          "woe": -1.0235,
+          "count": 2998
+        },
+        {
+          "lo": 0.7803,
+          "hi": null,
+          "woe": -1.9089,
+          "count": 3004
+        }
+      ]
+    },
+    {
+      "name": "obligation_ratio",
+      "label": "Existing obligations relative to income",
+      "modality": "cashflow",
+      "reason_code": "R15",
+      "missing_reason_code": "R20",
+      "coefficient": 0.29223,
+      "information_value": 0.5562,
+      "missing_woe": 0.009,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 0.1571,
+          "woe": -1.5023,
+          "count": 2998
+        },
+        {
+          "lo": 0.1571,
+          "hi": 0.2267,
+          "woe": -0.8532,
+          "count": 2999
+        },
+        {
+          "lo": 0.2267,
+          "hi": 0.2819,
+          "woe": -0.4617,
+          "count": 2997
+        },
+        {
+          "lo": 0.2819,
+          "hi": 0.3372,
+          "woe": -0.0707,
+          "count": 2998
+        },
+        {
+          "lo": 0.3372,
+          "hi": 0.4049,
+          "woe": 0.3846,
+          "count": 3000
+        },
+        {
+          "lo": 0.4049,
+          "hi": null,
+          "woe": 1.0588,
+          "count": 3003
+        }
+      ]
+    },
+    {
+      "name": "discretionary_ratio",
+      "label": "Share of spending that is discretionary",
+      "modality": "cashflow",
+      "reason_code": "R16",
+      "missing_reason_code": "R20",
+      "coefficient": 0.163685,
+      "information_value": 0.2299,
+      "missing_woe": 0.009,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 0.1923,
+          "woe": -0.8935,
+          "count": 2999
+        },
+        {
+          "lo": 0.1923,
+          "hi": 0.2522,
+          "woe": -0.4743,
+          "count": 2998
+        },
+        {
+          "lo": 0.2522,
+          "hi": 0.2999,
+          "woe": -0.2297,
+          "count": 2990
+        },
+        {
+          "lo": 0.2999,
+          "hi": 0.3473,
+          "woe": 0.0658,
+          "count": 3005
+        },
+        {
+          "lo": 0.3473,
+          "hi": 0.4084,
+          "woe": 0.2103,
+          "count": 3003
+        },
+        {
+          "lo": 0.4084,
+          "hi": null,
+          "woe": 0.7368,
+          "count": 3000
+        }
+      ]
+    },
+    {
+      "name": "gambling_flag",
+      "label": "Gambling-related transactions",
+      "modality": "cashflow",
+      "reason_code": "R17",
+      "missing_reason_code": "R20",
+      "coefficient": 0.541115,
+      "information_value": 0.0487,
+      "missing_woe": 0.0,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 1.0,
+          "woe": -0.0611,
+          "count": 19293
+        },
+        {
+          "lo": 1.0,
+          "hi": null,
+          "woe": 0.8018,
+          "count": 1091
+        }
+      ]
+    },
+    {
+      "name": "amount_to_income",
+      "label": "Requested amount relative to income",
+      "modality": "application",
+      "reason_code": "R18",
+      "missing_reason_code": "R18",
+      "coefficient": 0.469265,
+      "information_value": 0.0716,
+      "missing_woe": 0.0,
+      "bins": [
+        {
+          "lo": null,
+          "hi": 0.03,
+          "woe": -0.4758,
+          "count": 3395
+        },
+        {
+          "lo": 0.03,
+          "hi": 0.0476,
+          "woe": -0.2643,
+          "count": 3399
+        },
+        {
+          "lo": 0.0476,
+          "hi": 0.0683,
+          "woe": 0.0074,
+          "count": 3408
+        },
+        {
+          "lo": 0.0683,
+          "hi": 0.0976,
+          "woe": 0.0336,
+          "count": 3382
+        },
+        {
+          "lo": 0.0976,
+          "hi": 0.1537,
+          "woe": 0.1895,
+          "count": 3400
+        },
+        {
+          "lo": 0.1537,
+          "hi": null,
+          "woe": 0.3474,
+          "count": 3400
+        }
+      ]
+    }
+  ],
+  "reason_codes": {
+    "R01": "Credit bureau score is below our threshold",
+    "R02": "Length of credit history is limited",
+    "R03": "Too few established credit accounts",
+    "R04": "Number of recent credit inquiries",
+    "R05": "Delinquent past or present credit obligations",
+    "R06": "Income is irregular from month to month",
+    "R07": "Verified income is insufficient for the amount requested",
+    "R08": "Insufficient months of verified income",
+    "R09": "Declining account balance trend",
+    "R10": "Low minimum account balance relative to income",
+    "R11": "Recent overdraft or insufficient-funds activity",
+    "R12": "Irregular rent payments",
+    "R13": "Irregular utility payments",
+    "R14": "Irregular phone bill payments",
+    "R15": "Existing financial obligations are high relative to income",
+    "R16": "High share of discretionary spending",
+    "R17": "Gambling-related account activity",
+    "R18": "Amount requested is high relative to income",
+    "R19": "No credit bureau file or insufficient credit history to evaluate",
+    "R20": "Cash-flow information was not available (no linked bank account)"
+  },
+  "min_reason_contribution": 0.02,
+  "decision_policy": {
+    "approve_max_pd": 0.1611,
+    "refer_max_pd": 0.3686,
+    "notes": "Approve band calibrated to a 6% portfolio bad rate on hold-out; refer band to 10%. Above that: decline.",
+    "limit_multipliers_of_monthly_income": [
+      {
+        "max_pd": 0.03,
+        "multiplier": 3.0
+      },
+      {
+        "max_pd": 0.06,
+        "multiplier": 2.0
+      },
+      {
+        "max_pd": 1.0,
+        "multiplier": 1.0
+      }
+    ],
+    "apr_tiers": [
+      {
+        "min_score": 680,
+        "apr": 14.99
+      },
+      {
+        "min_score": 640,
+        "apr": 19.99
+      },
+      {
+        "min_score": 0,
+        "apr": 24.99
+      }
+    ],
+    "min_evidence": "NTC applicants without a linked bank account are referred (not declined) with an invitation to link an account."
+  }
+}

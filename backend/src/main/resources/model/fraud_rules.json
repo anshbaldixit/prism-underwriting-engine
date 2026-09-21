@@ -1,0 +1,86 @@
+{
+  "version": "1.0.0",
+  "thresholds": {
+    "step_up": 35,
+    "block": 60
+  },
+  "rules": [
+    {
+      "id": "F01",
+      "name": "Stated income inflated vs bank-verified income",
+      "feature": "income_inflation_ratio",
+      "op": ">",
+      "value": 1.35,
+      "points": 40,
+      "signal": "veracity"
+    },
+    {
+      "id": "F02",
+      "name": "Identity number pasted into the form",
+      "feature": "paste_ssn",
+      "op": "==",
+      "value": 1,
+      "points": 25,
+      "signal": "synthetic-identity"
+    },
+    {
+      "id": "F03",
+      "name": "Device used for 3+ applications in 30 days",
+      "feature": "device_apps_30d",
+      "op": ">=",
+      "value": 3,
+      "points": 35,
+      "signal": "velocity"
+    },
+    {
+      "id": "F04",
+      "name": "Email address created within the last 60 days",
+      "feature": "email_age_days",
+      "op": "<",
+      "value": 60,
+      "points": 15,
+      "signal": "synthetic-identity"
+    },
+    {
+      "id": "F05",
+      "name": "VoIP phone number",
+      "feature": "voip_phone",
+      "op": "==",
+      "value": 1,
+      "points": 10,
+      "signal": "synthetic-identity"
+    },
+    {
+      "id": "F06",
+      "name": "Application completed in under 2 minutes",
+      "feature": "session_seconds",
+      "op": "<",
+      "value": 120,
+      "points": 15,
+      "signal": "behavioural"
+    },
+    {
+      "id": "F07",
+      "name": "Income field edited 3 or more times",
+      "feature": "income_field_edits",
+      "op": ">=",
+      "value": 3,
+      "points": 10,
+      "signal": "behavioural"
+    },
+    {
+      "id": "F08",
+      "name": "Income could not be verified (no linked account)",
+      "feature": "bank_linked",
+      "op": "==",
+      "value": 0,
+      "points": 20,
+      "signal": "veracity"
+    }
+  ],
+  "outcomes": {
+    "PASS": "No action",
+    "STEP_UP": "Verify identity / income before decision",
+    "BLOCK": "Decline pending manual fraud review"
+  }
+}
