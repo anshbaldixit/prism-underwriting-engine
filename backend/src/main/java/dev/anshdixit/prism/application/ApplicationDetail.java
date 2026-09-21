@@ -28,6 +28,19 @@ public record ApplicationDetail(
         SimilarApplicantService.Cohort similar,
         List<ActionView> actions) {
 
+    /**
+     * What the applicant themselves may see: the decision, its reasons, the notice and their own cash-flow evidence.
+     * Gate rules, verification instructions, policy notes, the similar-applicant cohort, the underwriter summary and
+     * recorded actions are underwriter material and are removed here - on the server, not just in the UI.
+     */
+    public ApplicationDetail applicantView() {
+        DecisionView d = decision == null ? null : new DecisionView(decision.id(), decision.createdAt(), decision.decision(), null,
+                decision.score(), decision.pd(), decision.creditLimit(), decision.apr(), decision.reasonCodes(), decision.contributions(),
+                List.of(), List.of(), null, decision.notice(), decision.noticeProvider(), decision.noticeValidated(), decision.noticeFallbackUsed(),
+                null, null, decision.modelId(), decision.modelVersion(), decision.scoringLatencyMs());
+        return new ApplicationDetail(id, createdAt, status, personaId, applicant, loan, fileType, bankLinked, bureau, null, d, cashflow, null, List.of());
+    }
+
     public record ApplicantView(String fullName, String email, String phone, String employmentType, BigDecimal statedAnnualIncome, boolean nationalIdOnFile) {
     }
 

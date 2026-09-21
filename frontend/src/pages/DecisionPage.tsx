@@ -45,10 +45,10 @@ export default function DecisionPage() {
         <div className="card">
           <div className="row" style={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div className="stack">
-              <div className="row"><h2 style={{ margin: 0 }}>Decision</h2><DecisionBadge decision={dec.decision} /><FraudBadge outcome={dec.fraud.outcome} /></div>
-              <p className="muted small">Basis: {basisText[dec.basis] ?? dec.basis}. Scored in {dec.scoringLatencyMs} ms by {dec.modelId} v{dec.modelVersion}.</p>
-              {dec.policyNotes.map((n, i) => <p key={i} className="small">{n}</p>)}
-              {dec.verificationItems.length > 0 && (
+              <div className="row"><h2 style={{ margin: 0 }}>Decision</h2><DecisionBadge decision={dec.decision} />{staff && dec.fraud && <FraudBadge outcome={dec.fraud.outcome} />}</div>
+              <p className="muted small">{staff && dec.basis ? `Basis: ${basisText[dec.basis] ?? dec.basis}. ` : ''}Scored in {dec.scoringLatencyMs} ms by {dec.modelId} v{dec.modelVersion}.</p>
+              {staff && dec.policyNotes.map((n, i) => <p key={i} className="small">{n}</p>)}
+              {staff && dec.verificationItems.length > 0 && (
                 <div className="alert warn"><strong>Before a decision can be finalised:</strong><ul style={{ margin: '4px 0 0 18px' }}>{dec.verificationItems.map((v, i) => <li key={i}>{v}</li>)}</ul></div>
               )}
             </div>
@@ -106,7 +106,7 @@ export default function DecisionPage() {
         )}
       </div>
 
-      {dec && (
+      {staff && dec && dec.fraud && d.behaviour && (
         <div className="card">
           <h2>Fraud &amp; verification gate</h2>
           <div className="row">
@@ -146,7 +146,7 @@ export default function DecisionPage() {
         </div>
       )}
 
-      {d.similar && d.similar.size > 0 && (
+      {staff && d.similar && d.similar.size > 0 && (
         <div className="card stack">
           <h2>Applicants like this one <span className="tiny">advisory only - never an input to the score</span></h2>
           <div className="row">

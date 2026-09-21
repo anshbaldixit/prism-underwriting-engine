@@ -31,7 +31,7 @@ export default function QueuePage() {
       <ErrorBox error={error} />
       <div className="card table-wrap">
         <table>
-          <thead><tr><th>Submitted</th><th>Applicant</th><th>File</th><th className="num">Requested</th><th>Decision</th><th>Gate</th><th className="num">Score</th><th className="num">PD</th><th>Status</th></tr></thead>
+          <thead><tr><th>Submitted</th><th>Applicant</th><th>File</th><th className="num">Requested</th><th>Decision</th>{staff && <th>Gate</th>}<th className="num">Score</th><th className="num">PD</th><th>Status</th></tr></thead>
           <tbody>
             {rows.length === 0 && <tr><td colSpan={9} className="muted">Nothing here yet{filter !== 'ALL' ? ' for this filter' : ''}.</td></tr>}
             {rows.map((r) => (
@@ -41,7 +41,7 @@ export default function QueuePage() {
                 <td><FileTypeBadge fileType={r.fileType} /></td>
                 <td className="num">{money(r.requestedAmount)}</td>
                 <td><DecisionBadge decision={r.decision} /></td>
-                <td><FraudBadge outcome={r.fraudOutcome} /></td>
+                {staff && <td><FraudBadge outcome={r.fraudOutcome} /></td>}
                 <td className="num">{r.score ?? '—'}</td>
                 <td className="num">{pct(r.pd)}</td>
                 <td className="small">{r.status.toLowerCase()}</td>

@@ -23,7 +23,7 @@ import java.util.UUID;
 
 /**
  * API-first surface for applications. Roles:
- * APPLICANT submits and sees own applications (identity shown in full to themselves);
+ * APPLICANT submits and sees own applications (identity shown in full to themselves, underwriter material removed);
  * UNDERWRITER / ADMIN see the queue, full detail, the AI summary, and can record actions.
  */
 @RestController
@@ -40,25 +40,27 @@ public class ApplicationController {
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAnyRole('APPLICANT','UNDERWRITER','ADMIN')")
     public ApplicationDetail submit(@Valid @RequestBody SubmitApplicationRequest req, Authentication auth) {
-        return service.submit(req, auth.getName());
+        ApplicationDetail d = service.submit(req, auth.getName());
+        return isApplicant(auth) ? d.applicantView() : d;
     }
 
     @GetMapping
     @PreAuthorize("hasAnyRole('APPLICANT','UNDERWRITER','ADMIN')")
     public List<ApplicationService.ApplicationSummary> list(@RequestParam(required = false) List<Application.Status> status, Authentication auth) {
-        boolean applicant = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_APPLICANT"));
-        return service.list(status, applicant ? auth.getName() : null);
+        boolean applicant = isApplicant(auth);
+        List<ApplicationService.ApplicationSummary> rows = service.list(status, applicant ? auth.getName() : null);
+        return applicant ? rows.stream().map(ApplicationService.ApplicationSummary::applicantView).toList() : rows;
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('APPLICANT','UNDERWRITER','ADMIN')")
     public ApplicationDetail get(@PathVariable UUID id, Authentication auth) {
-        boolean applicant = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_APPLICANT"));
+        boolean applicant = isApplicant(auth);
         ApplicationDetail d = service.get(id, true);
         if (applicant && !auth.getName().equals(ownerOf(d))) {
             throw new org.springframework.security.access.AccessDeniedException("Not your application");
         }
-        return d;
+        return applicant ? d.applicantView() : d;
     }
 
     @GetMapping("/{id}/summary")
@@ -74,6 +76,10 @@ public class ApplicationController {
     @PreAuthorize("hasAnyRole('UNDERWRITER','ADMIN')")
     public ApplicationDetail act(@PathVariable UUID id, @Valid @RequestBody ActionRequest req, Authentication auth) {
         return service.recordAction(id, auth.getName(), req.action(), req.reason());
+    }
+
+    private static boolean isApplicant(Authentication auth) {
+        return auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_APPLICANT"));
     }
 
     private String ownerOf(ApplicationDetail d) {

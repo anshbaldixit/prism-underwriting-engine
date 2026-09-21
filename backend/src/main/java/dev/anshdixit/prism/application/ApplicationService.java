@@ -247,6 +247,10 @@ public class ApplicationService {
 
     public record ApplicationSummary(UUID id, Instant createdAt, String status, String personaId, String applicant, String fileType, boolean bankLinked,
                                      BigDecimal requestedAmount, String decision, String basis, Integer score, Double pd, String fraudOutcome) {
+        /** The applicant's own list: decision and score, without the basis or the gate outcome. */
+        public ApplicationSummary applicantView() {
+            return new ApplicationSummary(id, createdAt, status, personaId, applicant, fileType, bankLinked, requestedAmount, decision, null, score, pd, null);
+        }
     }
 
     // ------------------------------------------------------------------ helpers

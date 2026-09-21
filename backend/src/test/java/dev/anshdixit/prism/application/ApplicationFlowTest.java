@@ -116,14 +116,24 @@ class ApplicationFlowTest {
         assertThat(r.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         JsonNode d = r.getBody().get("decision");
         assertThat(d.get("decision").asString()).isEqualTo("APPROVE");
-        assertThat(d.get("fraud").get("outcome").asString()).isEqualTo("PASS");
         assertThat(d.get("creditLimit").asDouble()).isGreaterThan(0);
         assertThat(d.get("notice").get("decision").asString()).isEqualTo("APPROVE");
         assertThat(d.get("noticeValidated").asBoolean()).isTrue();
         assertThat(r.getBody().get("cashflow").get("features").get("monthlyIncome").asDouble()).isGreaterThan(3000);
         assertThat(r.getBody().get("cashflow").get("features").get("rentOntimeRatio").asDouble()).isEqualTo(1.0);
-        assertThat(r.getBody().get("similar").get("size").asInt()).isGreaterThan(0);
         assertThat(r.getBody().get("applicant").get("nationalIdOnFile").asBoolean()).isTrue();
+        // Underwriter material is filtered out of the applicant's own view - by the server, not the UI.
+        assertThat(d.get("fraud").isNull()).isTrue();
+        assertThat(d.get("basis").isNull()).isTrue();
+        assertThat(r.getBody().get("similar").isNull()).isTrue();
+        assertThat(r.getBody().get("behaviour").isNull()).isTrue();
+
+        String id = r.getBody().get("id").asString();
+        ResponseEntity<JsonNode> u = rest.exchange("/api/applications/" + id, HttpMethod.GET, new HttpEntity<>(bearer(login("underwriter"))), JsonNode.class);
+        assertThat(u.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(u.getBody().get("decision").get("fraud").get("outcome").asString()).isEqualTo("PASS");
+        assertThat(u.getBody().get("decision").get("basis").asString()).isEqualTo("CREDIT_POLICY");
+        assertThat(u.getBody().get("similar").get("size").asInt()).isGreaterThan(0);
     }
 
     @Test
@@ -133,14 +143,21 @@ class ApplicationFlowTest {
         assertThat(r.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         JsonNode d = r.getBody().get("decision");
         assertThat(d.get("decision").asString()).isEqualTo("DECLINE");
-        assertThat(d.get("basis").asString()).isEqualTo("FRAUD_BLOCK");
         assertThat(d.get("creditLimit").isNull()).isTrue();
+        // The applicant is told only that it is a decline; the gate's verdict and rules stay with the underwriter.
+        assertThat(d.get("basis").isNull()).isTrue();
+        assertThat(d.get("fraud").isNull()).isTrue();
+        assertThat(d.get("verificationItems")).isEmpty();
         String id = r.getBody().get("id").asString();
 
         // An applicant cannot read the underwriter summary; an underwriter can, and can ask the copilot.
         assertThat(rest.exchange("/api/applications/" + id + "/summary", HttpMethod.GET, new HttpEntity<>(bearer(applicant)), String.class).getStatusCode())
                 .isEqualTo(HttpStatus.FORBIDDEN);
         String underwriter = login("underwriter");
+        JsonNode full = rest.exchange("/api/applications/" + id, HttpMethod.GET, new HttpEntity<>(bearer(underwriter)), JsonNode.class).getBody();
+        assertThat(full.get("decision").get("basis").asString()).isEqualTo("FRAUD_BLOCK");
+        assertThat(full.get("decision").get("fraud").get("outcome").asString()).isEqualTo("BLOCK");
+        assertThat(full.get("decision").get("fraud").get("firedRules").size()).isGreaterThan(2);
         ResponseEntity<JsonNode> s = rest.exchange("/api/applications/" + id + "/summary", HttpMethod.GET, new HttpEntity<>(bearer(underwriter)), JsonNode.class);
         assertThat(s.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(s.getBody().get("recommendation").asString()).isIn("DECLINE", "REQUEST_DOCS", "REFER");

@@ -57,7 +57,7 @@ export interface DecisionView {
   id: string
   createdAt: string
   decision: 'APPROVE' | 'REFER' | 'DECLINE'
-  basis: string
+  basis: string | null           // underwriter view only
   score: number
   pd: number
   creditLimit: number | null
@@ -66,7 +66,7 @@ export interface DecisionView {
   contributions: FeatureContribution[]
   verificationItems: string[]
   policyNotes: string[]
-  fraud: FraudView
+  fraud: FraudView | null        // underwriter view only
   notice: Notice | null
   noticeProvider: string | null
   noticeValidated: boolean | null
@@ -116,7 +116,7 @@ export interface ApplicationDetail {
   fileType: 'thick' | 'thin' | 'ntc'
   bankLinked: boolean
   bureau: { bureauScore: number | null; monthsOnFile: number | null; tradelines: number | null; inquiries6m: number | null; delinquencies24m: number | null }
-  behaviour: { sessionSeconds: number | null; incomeFieldEdits: number | null; pasteSsn: boolean | null; pasteIncome: boolean | null; emailAgeDays: number | null; voipPhone: boolean | null; deviceId: string | null; deviceApps30d: number | null }
+  behaviour: { sessionSeconds: number | null; incomeFieldEdits: number | null; pasteSsn: boolean | null; pasteIncome: boolean | null; emailAgeDays: number | null; voipPhone: boolean | null; deviceId: string | null; deviceApps30d: number | null } | null  // underwriter view only
   decision: DecisionView | null
   cashflow: { features: Record<string, number | boolean | null>; transactions: TransactionView[]; spendByCategory: Record<string, number> } | null
   similar: Cohort | null
