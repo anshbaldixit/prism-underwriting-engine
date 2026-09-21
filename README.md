@@ -114,3 +114,5 @@ Stateless HS256 JWTs (Spring Security resource-server), method-level RBAC, Bean 
 ## Author
 
 Ansh Dixit — personal project, September 2026. Synthetic data only; no real customer information anywhere in this repository.
+
+Copyright © 2026 Ansh Dixit. All rights reserved.
