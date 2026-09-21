@@ -7,6 +7,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import time
 import urllib.request
 
 BASE = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8080"
@@ -24,7 +25,21 @@ def call(path: str, body=None, token=None):
         return json.loads(r.read().decode())
 
 
+def wait_until_ready(timeout_s: int = 600) -> None:
+    """The readiness probe turns UP only after start-up seeding (exemplars, policy chunks, historical applicants) is done."""
+    deadline = time.time() + timeout_s
+    while time.time() < deadline:
+        try:
+            if call("/actuator/health/readiness").get("status") == "UP":
+                return
+        except Exception:
+            pass
+        time.sleep(2)
+    raise SystemExit("backend did not become ready in time")
+
+
 def main():
+    wait_until_ready()
     token = call("/api/auth/login", {"username": "applicant", "password": PASSWORD})["token"]
     personas = json.load(open(os.path.join(ROOT, "backend", "src", "main", "resources", "demo", "personas.json")))
     print(f"{'persona':24} {'expected':44} {'decision':8} {'basis':22} {'score':>5} {'PD':>6} {'fraud':8} {'limit':>7} {'ms':>4}")

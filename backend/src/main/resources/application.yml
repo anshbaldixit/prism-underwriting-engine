@@ -28,6 +28,9 @@ management:
   endpoint:
     health:
       show-details: when_authorized
+      # /actuator/health/readiness only reports UP once the start-up seeding (ApplicationRunners) has finished.
+      probes:
+        enabled: true
 
 logging:
   level:

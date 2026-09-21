@@ -39,7 +39,7 @@ set -a && source .env && set +a && cd backend && ./mvnw spring-boot:run   # Wind
 cd frontend && npm install && npm run dev                                 # http://localhost:5173 (proxies /api to :8080)
 ```
 
-Sign in as `applicant`, `underwriter` or `admin` with `PRISM_SEED_PASSWORD` (if you leave it blank, a random password is generated and printed once in the backend log). Load a persona on **Apply** and submit.
+The backend is ready once `GET /actuator/health/readiness` returns `UP` (start-up seeding of the vector stores takes a few seconds offline, a few minutes with Bedrock embeddings). Sign in as `applicant`, `underwriter` or `admin` with `PRISM_SEED_PASSWORD` (if you leave it blank, a random password is generated and printed once in the backend log). Load a persona on **Apply** and submit.
 
 Full stack in containers instead: `docker compose --env-file .env -f infra/docker-compose.yml up --build` → http://localhost:8081.
 
