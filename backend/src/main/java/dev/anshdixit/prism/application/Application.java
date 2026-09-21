@@ -90,10 +90,10 @@ public class Application {
     @Column(precision = 6, scale = 2)
     private BigDecimal tradelines;
 
-    @Column(precision = 6, scale = 2)
+    @Column(name = "inquiries_6m", precision = 6, scale = 2)
     private BigDecimal inquiries6m;
 
-    @Column(precision = 6, scale = 2)
+    @Column(name = "delinquencies_24m", precision = 6, scale = 2)
     private BigDecimal delinquencies24m;
 
     @Column(precision = 10, scale = 1)
@@ -113,6 +113,7 @@ public class Application {
     @Column(length = 80)
     private String deviceId;
 
+    @Column(name = "device_apps_30d")
     private Integer deviceApps30d;
 
     @Column(columnDefinition = "text")
