@@ -73,6 +73,20 @@ class LlmOutputValidatorTest {
     }
 
     @Test
+    void copilotMayNameAProtectedCharacteristicOnlyWhileCitingTheProhibitedBasesPolicy() {
+        Map<String, Object> cctx = Map.of("policyChunks", List.of(
+                Map.of("doc", "credit-policy", "section", "Prohibited bases", "content", "..."),
+                Map.of("doc", "credit-policy", "section", "Decision bands", "content", "...")));
+        String refusal = "{\"answer\":\"No. Age is a prohibited basis and cannot be used to override a decision.\",\"citations\":[{\"doc\":\"credit-policy\",\"section\":\"Prohibited bases\"}],\"confidence\":\"high\"}";
+        String misuse = "{\"answer\":\"Given the applicant's age, a decline seems reasonable.\",\"citations\":[{\"doc\":\"credit-policy\",\"section\":\"Decision bands\"}],\"confidence\":\"medium\"}";
+        assertThat(validator.validate(LlmTask.COPILOT_ANSWER, refusal, cctx).valid()).isTrue();
+        assertThat(validator.validate(LlmTask.COPILOT_ANSWER, misuse, cctx).errors()).anyMatch(e -> e.contains("prohibited-bases"));
+        // Customer-facing text never gets the exemption, even with a citation-like field present.
+        String notice = "{\"decision\":\"DECLINE\",\"summary\":\"Age was not a factor.\",\"principal_reasons\":[{\"code\":\"R06\",\"explanation\":\"x\"},{\"code\":\"R11\",\"explanation\":\"x\"}],\"improvement_tips\":[],\"disclaimer\":\"d\"}";
+        assertThat(validator.validate(LlmTask.ADVERSE_ACTION_NOTICE, notice, ctx).errors()).anyMatch(e -> e.contains("protected"));
+    }
+
+    @Test
     void copilotMayOnlyCiteRetrievedExcerpts() {
         Map<String, Object> cctx = Map.of("policyChunks", List.of(Map.of("doc", "credit-policy", "section", "Decision bands", "content", "...")));
         String good = "{\"answer\":\"Bands are calibrated to 6%.\",\"citations\":[{\"doc\":\"credit-policy\",\"section\":\"Decision bands\"}],\"confidence\":\"high\"}";

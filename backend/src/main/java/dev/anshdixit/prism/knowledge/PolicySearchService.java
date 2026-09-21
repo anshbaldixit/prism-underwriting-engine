@@ -83,6 +83,15 @@ public class PolicySearchService implements ApplicationRunner {
                 .list();
     }
 
+    /** A specific section by (doc, section); used to pin always-relevant policy into the copilot's context. */
+    public java.util.Optional<Chunk> section(String doc, String section) {
+        seedIfNeeded();
+        return jdbc.sql("select doc, section, content from policy_chunks where doc = :d and section = :s")
+                .param("d", doc).param("s", section)
+                .query((rs, i) -> new Chunk(rs.getString("doc"), rs.getString("section"), rs.getString("content"), 1.0))
+                .optional();
+    }
+
     /** Splits each markdown file on "## " headings; the H1 title becomes the document name. */
     static List<Chunk> loadChunks() {
         List<Chunk> chunks = new ArrayList<>();

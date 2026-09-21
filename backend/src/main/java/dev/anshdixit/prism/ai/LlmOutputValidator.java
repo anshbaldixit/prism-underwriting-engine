@@ -53,7 +53,13 @@ public class LlmOutputValidator {
         List<String> errors = new ArrayList<>();
         String flat = json.toString();
         if (PROTECTED_CLASS.matcher(flat).find()) {
-            errors.add("Output references a protected characteristic");
+            // The copilot may explain that a characteristic is a prohibited basis - but only while citing that policy.
+            // Anything customer-facing or summarising the applicant must not mention one at all.
+            if (task != LlmTask.COPILOT_ANSWER || !citesProhibitedBasesPolicy(json)) {
+                errors.add(task == LlmTask.COPILOT_ANSWER
+                        ? "Output references a protected characteristic without citing the prohibited-bases policy"
+                        : "Output references a protected characteristic");
+            }
         }
         switch (task) {
             case ADVERSE_ACTION_NOTICE -> validateNotice(json, context, errors);
@@ -143,6 +149,20 @@ public class LlmOutputValidator {
                 }
             }
         }
+    }
+
+    private static boolean citesProhibitedBasesPolicy(JsonNode json) {
+        JsonNode cites = json.get("citations");
+        if (cites == null || !cites.isArray()) {
+            return false;
+        }
+        for (JsonNode c : cites) {
+            String section = c.path("section").asString("").toLowerCase();
+            if (section.contains("prohibited bases") || section.contains("fairness")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @SuppressWarnings("unchecked")
