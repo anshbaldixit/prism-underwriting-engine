@@ -1,6 +1,7 @@
 package dev.anshdixit.prism.config;
 
 import dev.anshdixit.prism.common.RateLimitFilter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -57,7 +58,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    SecurityFilterChain api(HttpSecurity http, JwtDecoder decoder, RateLimitFilter rateLimit, CorsConfigurationSource cors) throws Exception {
+    SecurityFilterChain api(HttpSecurity http, JwtDecoder decoder, RateLimitFilter rateLimit, @Qualifier("apiCorsSource") CorsConfigurationSource cors) throws Exception {
         JwtGrantedAuthoritiesConverter roles = new JwtGrantedAuthoritiesConverter();
         roles.setAuthoritiesClaimName("roles");
         roles.setAuthorityPrefix("ROLE_");
@@ -80,8 +81,8 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource(PrismProperties props) {
+    @Bean("apiCorsSource")
+    CorsConfigurationSource apiCorsSource(PrismProperties props) {
         CorsConfiguration cfg = new CorsConfiguration();
         cfg.setAllowedOrigins(props.security().corsOrigins());
         cfg.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
