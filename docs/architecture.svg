@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#52514e"/>
+    </marker>
+    <style>
+      .title { font-size: 26px; font-weight: 700; fill: #0b0b0b; }
+      .sub { font-size: 14px; fill: #52514e; }
+      .layer { font-size: 13px; font-weight: 700; fill: #52514e; letter-spacing: 1.5px; }
+      .box { fill: #ffffff; stroke: #d9d8d3; stroke-width: 1.5; rx: 10; }
+      .box.blue { stroke: #2a78d6; }
+      .box.aqua { stroke: #1baf7a; }
+      .box.orange { stroke: #eb6834; }
+      .box.violet { stroke: #4a3aa7; }
+      .box.grey { fill: #f6f6f4; stroke: #d9d8d3; }
+      .h { font-size: 16px; font-weight: 650; fill: #0b0b0b; }
+      .t { font-size: 13px; fill: #52514e; }
+      .tag { font-size: 11px; font-weight: 650; fill: #ffffff; }
+      .flow { stroke: #52514e; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+      .flow.dashed { stroke-dasharray: 6 5; }
+      .stage { fill: #eef4fc; stroke: #2a78d6; stroke-width: 1.2; rx: 8; }
+      .stage.gate { fill: #fdf1ec; stroke: #eb6834; }
+      .stage.ai { fill: #f1eefb; stroke: #4a3aa7; }
+      .stage.vec { fill: #ecf8f3; stroke: #1baf7a; }
+      .st { font-size: 12.5px; font-weight: 600; fill: #0b0b0b; }
+      .ss { font-size: 11px; fill: #52514e; }
+    </style>
+  </defs>
+  <rect width="1600" height="960" fill="#fcfcfb"/>
+  <text x="40" y="48" class="title">Prism - real-time multi-modal underwriting engine</text>
+  <text x="40" y="72" class="sub">Scorecard + rules decide; the LLM only explains and retrieves. Every model call is guardrailed, validated against the model's own reason codes, and audited.</text>
+
+  <!-- FRONTEND -->
+  <text x="40" y="118" class="layer">FRONTEND</text>
+  <rect x="40" y="128" width="330" height="150" class="box blue"/>
+  <rect x="52" y="140" width="112" height="20" rx="4" fill="#2a78d6"/><text x="60" y="154" class="tag">React 19 · Vite · TS</text>
+  <text x="52" y="184" class="h">Applicant &amp; underwriter UI</text>
+  <text x="52" y="206" class="t">Apply form with live behavioural capture</text>
+  <text x="52" y="224" class="t">(session timing, paste events, device id)</text>
+  <text x="52" y="242" class="t">Decision view · queue · copilot · model card</text>
+  <text x="52" y="260" class="t">JWT in session storage · role-based routes</text>
+
+  <!-- CLOUD -->
+  <text x="40" y="318" class="layer">CLOUD (AWS)</text>
+  <rect x="40" y="328" width="330" height="200" class="box grey"/>
+  <text x="52" y="356" class="h">ECS Fargate · ALB + WAF · RDS Postgres 16</text>
+  <text x="52" y="378" class="t">Task IAM role - no keys in containers</text>
+  <text x="52" y="396" class="t">Secrets Manager: JWT secret, DB password</text>
+  <text x="52" y="414" class="t">VPC endpoints to Bedrock / Secrets / Logs</text>
+  <text x="52" y="432" class="t">CloudWatch logs + Actuator metrics, alarms on</text>
+  <text x="52" y="450" class="t">latency, LLM fallback rate, validation failures</text>
+  <text x="52" y="476" class="h">Local: docker compose + mvnw + vite</text>
+  <text x="52" y="498" class="t">Offline AI providers - runs with zero credentials</text>
+
+  <!-- SECURITY -->
+  <text x="40" y="568" class="layer">SECURITY</text>
+  <rect x="40" y="578" width="330" height="170" class="box orange"/>
+  <text x="52" y="606" class="h">Defence in depth</text>
+  <text x="52" y="628" class="t">HS256 JWT · Spring Security resource server</text>
+  <text x="52" y="646" class="t">Method-level RBAC: applicant / underwriter / admin</text>
+  <text x="52" y="664" class="t">Bean Validation on every request field</text>
+  <text x="52" y="682" class="t">Token-bucket rate limit · CORS allow-list · CSP</text>
+  <text x="52" y="700" class="t">SSN stored only as keyed HMAC · PII redaction</text>
+  <text x="52" y="718" class="t">before any prompt · problem-detail errors, no leaks</text>
+  <text x="52" y="736" class="t">Secrets from env only - startup fails without them</text>
+
+  <!-- BACKEND -->
+  <text x="410" y="118" class="layer">BACKEND · Spring Boot 4 / Java 21</text>
+  <rect x="410" y="128" width="780" height="400" class="box blue"/>
+  <text x="424" y="156" class="h">REST API  /api/auth · /api/applications · /api/copilot · /api/policy · /api/model · /api/monitoring</text>
+
+  <text x="424" y="186" class="layer" style="letter-spacing:0.5px">Real-time decision pipeline (one request, ~100 ms before the LLM step)</text>
+  <!-- stages row 1 -->
+  <rect x="424" y="198" width="118" height="58" class="stage vec"/><text x="434" y="220" class="st">1 Categorise</text><text x="434" y="236" class="ss">txn text → category</text><text x="434" y="249" class="ss">pgvector k-NN</text>
+  <rect x="552" y="198" width="118" height="58" class="stage"/><text x="562" y="220" class="st">2 Cash-flow</text><text x="562" y="236" class="ss">income, volatility,</text><text x="562" y="249" class="ss">rent/utility, NSF</text>
+  <rect x="680" y="198" width="118" height="58" class="stage gate"/><text x="690" y="220" class="st">3 Fraud gate</text><text x="690" y="236" class="ss">behaviour + veracity</text><text x="690" y="249" class="ss">pass · step-up · block</text>
+  <rect x="808" y="198" width="118" height="58" class="stage"/><text x="818" y="220" class="st">4 Scorecard</text><text x="818" y="236" class="ss">WoE logistic, exact</text><text x="818" y="249" class="ss">additive contributions</text>
+  <rect x="936" y="198" width="118" height="58" class="stage"/><text x="946" y="220" class="st">5 Policy</text><text x="946" y="236" class="ss">PD bands, limit, APR,</text><text x="946" y="249" class="ss">NTC refer path</text>
+  <rect x="1064" y="198" width="112" height="58" class="stage ai"/><text x="1074" y="220" class="st">6 Explain</text><text x="1074" y="236" class="ss">guardrailed notice,</text><text x="1074" y="249" class="ss">summary, copilot</text>
+  <path d="M542 227 H552" class="flow"/><path d="M670 227 H680" class="flow"/><path d="M798 227 H808" class="flow"/><path d="M926 227 H936" class="flow"/><path d="M1054 227 H1064" class="flow"/>
+
+  <!-- guardrail pipeline -->
+  <rect x="424" y="276" width="752" height="112" class="box violet"/>
+  <rect x="436" y="288" width="112" height="20" rx="4" fill="#4a3aa7"/><text x="444" y="302" class="tag">GuardrailService</text>
+  <text x="560" y="303" class="t">the only path to any LLM - identical for every provider</text>
+  <rect x="436" y="318" width="110" height="52" class="stage ai"/><text x="444" y="338" class="st">PII redaction</text><text x="444" y="354" class="ss">ids, emails, phones</text>
+  <rect x="556" y="318" width="120" height="52" class="stage ai"/><text x="564" y="338" class="st">Managed guardrail</text><text x="564" y="354" class="ss">ApplyGuardrail API</text>
+  <rect x="686" y="318" width="110" height="52" class="stage ai"/><text x="694" y="338" class="st">Model call</text><text x="694" y="354" class="ss">timeout, prompt files</text>
+  <rect x="806" y="318" width="150" height="52" class="stage ai"/><text x="814" y="338" class="st">Output validator</text><text x="814" y="354" class="ss">schema · codes ⊆ model</text><text x="814" y="366" class="ss">no protected-class terms</text>
+  <rect x="966" y="318" width="96" height="52" class="stage ai"/><text x="974" y="338" class="st">Retry / fallback</text><text x="974" y="354" class="ss">→ template</text>
+  <rect x="1072" y="318" width="92" height="52" class="stage ai"/><text x="1080" y="338" class="st">Audit row</text><text x="1080" y="354" class="ss">ai_invocations</text>
+  <path d="M546 344 H556" class="flow"/><path d="M676 344 H686" class="flow"/><path d="M796 344 H806" class="flow"/><path d="M956 344 H966" class="flow"/><path d="M1062 344 H1072" class="flow"/>
+
+  <!-- retrieval + similar -->
+  <rect x="424" y="404" width="368" height="108" class="box aqua"/>
+  <text x="436" y="430" class="h">Retrieval (pgvector, cosine, HNSW)</text>
+  <text x="436" y="452" class="t">category_exemplars - transaction categorisation</text>
+  <text x="436" y="470" class="t">historical_applicants - "applicants like this one" (advisory)</text>
+  <text x="436" y="488" class="t">policy_chunks - cited policy RAG for the copilot</text>
+  <text x="436" y="506" class="t">Embeddings: Titan v2 (1024-d) or offline hashing, same schema</text>
+
+  <rect x="808" y="404" width="368" height="108" class="box grey"/>
+  <text x="820" y="430" class="h">Human in the loop &amp; audit</text>
+  <text x="820" y="452" class="t">decisions: model version, feature snapshot, every</text>
+  <text x="820" y="470" class="t">contribution, reason codes, notice provenance</text>
+  <text x="820" y="488" class="t">underwriter_actions: confirm / override with reason</text>
+  <text x="820" y="506" class="t">Tests: unit + Python-parity + Testcontainers flow</text>
+
+  <!-- DATA -->
+  <text x="410" y="568" class="layer">DATA · PostgreSQL 16 + pgvector (Flyway-managed)</text>
+  <rect x="410" y="578" width="780" height="170" class="box aqua"/>
+  <text x="424" y="606" class="h">Structured</text>
+  <text x="424" y="628" class="t">users · applications (SSN as HMAC only) · bank_transactions</text>
+  <text x="424" y="646" class="t">decisions (append-only) · underwriter_actions · ai_invocations</text>
+  <text x="424" y="676" class="h">Vector (1024-d, cosine, HNSW index)</text>
+  <text x="424" y="698" class="t">category_exemplars · historical_applicants · policy_chunks · applications.profile_embedding</text>
+  <text x="424" y="728" class="t">Seeded at start-up per embedding provider; re-embedded automatically when the provider changes.</text>
+
+  <!-- AI LAYER -->
+  <text x="1230" y="118" class="layer">AI LAYER</text>
+  <rect x="1230" y="128" width="330" height="400" class="box violet"/>
+  <rect x="1242" y="140" width="130" height="20" rx="4" fill="#4a3aa7"/><text x="1250" y="154" class="tag">provider = env var</text>
+  <text x="1242" y="184" class="h">Amazon Bedrock (primary)</text>
+  <text x="1242" y="204" class="t">Claude via Converse API (model id config)</text>
+  <text x="1242" y="222" class="t">Titan Text Embeddings v2 (1024-d)</text>
+  <text x="1242" y="240" class="t">Bedrock Guardrails: PII, denied topics,</text>
+  <text x="1242" y="258" class="t">prompt-attack filter, grounding</text>
+  <text x="1242" y="288" class="h">Anthropic API (alternate)</text>
+  <text x="1242" y="308" class="t">Same prompts, validator and audit trail</text>
+  <text x="1242" y="338" class="h">Offline (fallback + zero-credential demo)</text>
+  <text x="1242" y="358" class="t">Deterministic template renderer built from</text>
+  <text x="1242" y="376" class="t">the same context the validator checks</text>
+  <text x="1242" y="394" class="t">Hashed n-gram embeddings (lexical)</text>
+  <text x="1242" y="424" class="h">Three closed tasks, versioned prompts</text>
+  <text x="1242" y="444" class="t">ADVERSE_ACTION_NOTICE - Reg B wording</text>
+  <text x="1242" y="462" class="t">UNDERWRITER_SUMMARY - cites factor codes</text>
+  <text x="1242" y="480" class="t">COPILOT_ANSWER - cites retrieved policy only</text>
+  <text x="1242" y="508" class="t" font-style="italic">Never decides, prices, ranks or overrides.</text>
+
+  <!-- ML PIPELINE -->
+  <text x="1230" y="568" class="layer">ML PIPELINE · Python (offline)</text>
+  <rect x="1230" y="578" width="330" height="170" class="box orange"/>
+  <text x="1242" y="606" class="h">ml/generate_data.py → train_and_export.py</text>
+  <text x="1242" y="628" class="t">30k synthetic applicants (thick / thin / NTC)</text>
+  <text x="1242" y="646" class="t">WoE scorecard vs bureau-only vs GBM benchmark</text>
+  <text x="1242" y="664" class="t">Policy simulation at 6 % portfolio bad rate</text>
+  <text x="1242" y="682" class="t">Fairness harness (AIR, equal opportunity)</text>
+  <text x="1242" y="700" class="t">Fraud-gate evaluation · model card</text>
+  <text x="1242" y="726" class="t">Exports: scorecard.json, fraud_rules.json,</text>
+  <text x="1242" y="742" class="t">model_card.json, historical_sample.json, figures</text>
+
+  <!-- flows -->
+  <path d="M370 200 H410" class="flow"/>
+  <text x="372" y="192" class="ss">HTTPS /api</text>
+  <path d="M1190 227 H1230" class="flow"/>
+  <path d="M1190 344 H1230" class="flow"/>
+  <path d="M800 528 V578" class="flow"/>
+  <path d="M1395 578 V528" class="flow dashed"/>
+  <text x="1404" y="550" class="ss">artefacts packaged with the service</text>
+
+  <!-- legend -->
+  <rect x="40" y="790" width="1520" height="130" class="box grey"/>
+  <text x="52" y="818" class="h">Design invariants</text>
+  <text x="52" y="842" class="t">1. Behavioural signals feed the fraud gate only - they never change the price or limit offered to a legitimate applicant.</text>
+  <text x="52" y="862" class="t">2. Reason codes are exact: the scorecard is additive, and a notice that names a reason the model did not produce is rejected before it can reach a customer.</text>
+  <text x="52" y="882" class="t">3. No-file applicants are referred, never auto-declined; with a linked account they score on the same card as everyone else.</text>
+  <text x="52" y="902" class="t">4. Every decision is reproducible from its stored record (model version, feature snapshot, contributions) without re-running the model.</text>
+</svg>
