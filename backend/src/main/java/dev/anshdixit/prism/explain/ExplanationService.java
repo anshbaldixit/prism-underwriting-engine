@@ -127,7 +127,12 @@ public class ExplanationService {
     }
 
     private static Double valueOf(ScoreResult score, String feature) {
-        return score.contributions().stream().filter(c -> c.feature().equals(feature)).map(ScoreResult.FeatureContribution::value).findFirst().orElse(null);
+        for (ScoreResult.FeatureContribution c : score.contributions()) {
+            if (c.feature().equals(feature)) {
+                return c.value();  // null when the feature was not observed
+            }
+        }
+        return null;
     }
 
     private static String reasonsBlock(ScoreResult score) {
