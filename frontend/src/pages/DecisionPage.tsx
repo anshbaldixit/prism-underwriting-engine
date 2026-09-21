@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { get, post } from '../api/client'
 import type { ApplicationDetail, CopilotAnswer, UnderwriterSummary } from '../api/types'
@@ -176,6 +176,11 @@ function UnderwriterTools({ d, onChange }: { d: ApplicationDetail; onChange: (d:
   const [chat, setChat] = useState<{ q: string; a: CopilotAnswer }[]>([])
   const [chatBusy, setChatBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const chatEnd = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    chatEnd.current?.scrollIntoView({ block: 'end' })
+  }, [chat])
 
   async function loadSummary() {
     setSummaryBusy(true)
@@ -270,6 +275,7 @@ function UnderwriterTools({ d, onChange }: { d: ApplicationDetail; onChange: (d:
               </div>
             </div>
           ))}
+          <div ref={chatEnd} />
         </div>
         <form onSubmit={ask} className="row">
           <input style={{ flex: 1, padding: '8px 10px', border: '1px solid var(--border)', borderRadius: 8, background: 'var(--surface-1)' }} value={question} onChange={(e) => setQuestion(e.target.value)} placeholder="e.g. Why was this referred, and what does policy say about no-file applicants?" maxLength={600} />

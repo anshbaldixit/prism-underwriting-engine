@@ -153,7 +153,7 @@ tr.clickable:hover td { background: var(--surface-2); }
 .persona:hover, .persona.active { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, transparent); }
 .persona .name { font-weight: 600; }
 .persona .story { font-size: 12px; color: var(--text-2); margin-top: 4px; }
-.chat { display: flex; flex-direction: column; gap: 8px; max-height: 420px; overflow: auto; }
+.chat { display: flex; flex-direction: column; gap: 8px; max-height: 620px; overflow: auto; }
 .msg { padding: 8px 12px; border-radius: 10px; max-width: 90%; }
 .msg.q { align-self: flex-end; background: var(--accent); color: var(--accent-ink); }
 .msg.a { align-self: flex-start; background: var(--surface-2); }
