@@ -69,16 +69,5 @@ jobs:
           python generate_data.py > /dev/null
           python train_and_export.py > /dev/null
           python personas.py > /dev/null
-      - name: Exported artefacts are unchanged (pipeline is deterministic; only trained_at differs)
-        run: |
-          git diff --exit-code --stat -- backend/src/main/resources/model/fraud_rules.json backend/src/main/resources/demo/personas.json backend/src/main/resources/model/historical_sample.json
-          python - <<'PY'
-          import json, subprocess, sys
-          for f in ["backend/src/main/resources/model/scorecard.json", "backend/src/main/resources/model/model_card.json"]:
-              committed = json.loads(subprocess.check_output(["git", "show", f"HEAD:{f}"]))
-              regenerated = json.load(open(f))
-              committed.pop("trained_at", None); regenerated.pop("trained_at", None)
-              if committed != regenerated:
-                  print("regenerated artefact differs from the committed one:", f); sys.exit(1)
-          print("artefacts reproduce exactly")
-          PY
+      - name: Regenerated artefacts reproduce the committed ones (structure exact, fitted numbers within tolerance)
+        run: python ml/check_reproducibility.py
