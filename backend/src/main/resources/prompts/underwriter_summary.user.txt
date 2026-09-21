@@ -1,0 +1,17 @@
+File type: {{fileType}} | Bank account linked: {{bankLinked}}
+Engine decision: {{decision}} (basis: {{basis}}) | Score: {{score}} | PD: {{pdPct}}%
+Requested: ${{requestedAmount}} | Stated annual income: ${{statedAnnualIncome}} | Verified monthly income: {{verifiedMonthlyIncome}}
+
+Adverse factors (reason codes):
+{{reasonsBlock}}
+
+Supporting factors:
+{{strengthsBlock}}
+
+Fraud / verification gate: {{fraudOutcome}} ({{fraudPoints}} points){{fraudRulesLine}}
+Verification items: {{verificationItems}}
+
+Cash-flow summary: {{cashflowSummary}}
+Similar historical applicants (advisory only, not used in the score): {{similarCohort}}
+
+Produce the JSON summary now.

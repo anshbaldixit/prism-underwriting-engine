@@ -1,0 +1,10 @@
+Decision: {{decision}}
+Decision basis: {{basis}}
+Requested amount: ${{requestedAmount}}
+{{offerLine}}
+Verification items still required (if any): {{verificationItems}}
+
+Principal reasons (use exactly these codes, in this order):
+{{reasonsBlock}}
+
+Write the notice now as JSON.
