@@ -1,0 +1,2032 @@
+[
+ {
+  "id": "ntc-gig-worker",
+  "name": "Priya - New-to-Credit gig worker",
+  "story": "26, no bureau file at all, 14 months of consistent rideshare + delivery income, pays rent and phone on time every month. A bureau-only lender cannot score her.",
+  "expected": "APPROVE - hero case for cash-flow underwriting",
+  "form": {
+   "fullName": "Priya Raman",
+   "email": "priya.raman@example.com",
+   "phone": "+1-512-555-0142",
+   "employmentType": "SELF_EMPLOYED",
+   "statedAnnualIncome": 41000,
+   "requestedAmount": 2500,
+   "loanPurpose": "Replace laptop for freelance design work",
+   "consentBankData": true,
+   "consentAltData": true
+  },
+  "bureau": {
+   "fileType": "ntc"
+  },
+  "behaviour": {
+   "sessionSeconds": 510,
+   "incomeFieldEdits": 1,
+   "pasteSsn": false,
+   "pasteIncome": false,
+   "emailAgeDays": 1460,
+   "voipPhone": false,
+   "deviceId": "dev-priya-01"
+  },
+  "transactions": [
+   {
+    "date": "2026-06-01",
+    "description": "ZELLE TO M PATEL RENT",
+    "amount": -1100,
+    "balance_after": 320
+   },
+   {
+    "date": "2026-06-02",
+    "description": "WALMART SUPERCENTER",
+    "amount": -124.81,
+    "balance_after": 195.19
+   },
+   {
+    "date": "2026-06-03",
+    "description": "UBER TECHNOLOGIES DIRECT DEP",
+    "amount": 1524.33,
+    "balance_after": 1719.52
+   },
+   {
+    "date": "2026-06-03",
+    "description": "STEAM PURCHASE",
+    "amount": -13.49,
+    "balance_after": 1706.03
+   },
+   {
+    "date": "2026-06-06",
+    "description": "SPOTIFY USA",
+    "amount": -10.99,
+    "balance_after": 1695.04
+   },
+   {
+    "date": "2026-06-09",
+    "description": "WALMART SUPERCENTER",
+    "amount": -86.08,
+    "balance_after": 1608.96
+   },
+   {
+    "date": "2026-06-10",
+    "description": "DOORDASH INC PAYOUT",
+    "amount": 266.71,
+    "balance_after": 1875.67
+   },
+   {
+    "date": "2026-06-12",
+    "description": "AUSTIN ENERGY BILLPAY",
+    "amount": -99.3,
+    "balance_after": 1776.37
+   },
+   {
+    "date": "2026-06-14",
+    "description": "STEAM PURCHASE",
+    "amount": -14.31,
+    "balance_after": 1762.06
+   },
+   {
+    "date": "2026-06-15",
+    "description": "T-MOBILE AUTOPAY",
+    "amount": -60,
+    "balance_after": 1702.06
+   },
+   {
+    "date": "2026-06-16",
+    "description": "WALMART SUPERCENTER",
+    "amount": -132.32,
+    "balance_after": 1569.74
+   },
+   {
+    "date": "2026-06-17",
+    "description": "UBER TECHNOLOGIES DIRECT DEP",
+    "amount": 1524.33,
+    "balance_after": 3094.07
+   },
+   {
+    "date": "2026-06-19",
+    "description": "STARBUCKS 2231",
+    "amount": -81.01,
+    "balance_after": 3013.06
+   },
+   {
+    "date": "2026-06-23",
+    "description": "KROGER #1182",
+    "amount": -58.19,
+    "balance_after": 2954.87
+   },
+   {
+    "date": "2026-06-24",
+    "description": "DOORDASH INC PAYOUT",
+    "amount": 266.71,
+    "balance_after": 3221.58
+   },
+   {
+    "date": "2026-07-01",
+    "description": "ZELLE TO M PATEL RENT",
+    "amount": -1100,
+    "balance_after": 2121.58
+   },
+   {
+    "date": "2026-07-02",
+    "description": "COSTCO WHSE",
+    "amount": -59.22,
+    "balance_after": 2062.36
+   },
+   {
+    "date": "2026-07-03",
+    "description": "UBER TECHNOLOGIES DIRECT DEP",
+    "amount": 1621.28,
+    "balance_after": 3683.64
+   },
+   {
+    "date": "2026-07-06",
+    "description": "SPOTIFY USA",
+    "amount": -10.99,
+    "balance_after": 3672.65
+   },
+   {
+    "date": "2026-07-09",
+    "description": "KROGER #1182",
+    "amount": -58.96,
+    "balance_after": 3613.69
+   },
+   {
+    "date": "2026-07-10",
+    "description": "DOORDASH INC PAYOUT",
+    "amount": 320.29,
+    "balance_after": 3933.98
+   },
+   {
+    "date": "2026-07-12",
+    "description": "AUSTIN ENERGY BILLPAY",
+    "amount": -82.51,
+    "balance_after": 3851.47
+   },
+   {
+    "date": "2026-07-15",
+    "description": "T-MOBILE AUTOPAY",
+    "amount": -60,
+    "balance_after": 3791.47
+   },
+   {
+    "date": "2026-07-16",
+    "description": "KROGER #1182",
+    "amount": -79.62,
+    "balance_after": 3711.85
+   },
+   {
+    "date": "2026-07-17",
+    "description": "UBER TECHNOLOGIES DIRECT DEP",
+    "amount": 1621.28,
+    "balance_after": 5333.13
+   },
+   {
+    "date": "2026-07-19",
+    "description": "CHIPOTLE 0442",
+    "amount": -51.58,
+    "balance_after": 5281.55
+   },
+   {
+    "date": "2026-07-19",
+    "description": "UBER EATS",
+    "amount": -37.3,
+    "balance_after": 5244.25
+   },
+   {
+    "date": "2026-07-22",
+    "description": "AMC THEATRES",
+    "amount": -16.83,
+    "balance_after": 5227.42
+   },
+   {
+    "date": "2026-07-23",
+    "description": "KROGER #1182",
+    "amount": -100.96,
+    "balance_after": 5126.46
+   },
+   {
+    "date": "2026-07-24",
+    "description": "DOORDASH INC PAYOUT",
+    "amount": 320.29,
+    "balance_after": 5446.75
+   },
+   {
+    "date": "2026-08-01",
+    "description": "ZELLE TO M PATEL RENT",
+    "amount": -1100,
+    "balance_after": 4346.75
+   },
+   {
+    "date": "2026-08-02",
+    "description": "KROGER #1182",
+    "amount": -97.2,
+    "balance_after": 4249.55
+   },
+   {
+    "date": "2026-08-03",
+    "description": "UBER TECHNOLOGIES DIRECT DEP",
+    "amount": 1595.09,
+    "balance_after": 5844.64
+   },
+   {
+    "date": "2026-08-06",
+    "description": "SPOTIFY USA",
+    "amount": -10.99,
+    "balance_after": 5833.65
+   },
+   {
+    "date": "2026-08-08",
+    "description": "AMC THEATRES",
+    "amount": -62.12,
+    "balance_after": 5771.53
+   },
+   {
+    "date": "2026-08-08",
+    "description": "STARBUCKS 2231",
+    "amount": -52.66,
+    "balance_after": 5718.87
+   },
+   {
+    "date": "2026-08-09",
+    "description": "COSTCO WHSE",
+    "amount": -121.06,
+    "balance_after": 5597.81
+   },
+   {
+    "date": "2026-08-10",
+    "description": "DOORDASH INC PAYOUT",
+    "amount": 255.79,
+    "balance_after": 5853.6
+   },
+   {
+    "date": "2026-08-12",
+    "description": "AUSTIN ENERGY BILLPAY",
+    "amount": -82.45,
+    "balance_after": 5771.15
+   },
+   {
+    "date": "2026-08-15",
+    "description": "T-MOBILE AUTOPAY",
+    "amount": -60,
+    "balance_after": 5711.15
+   },
+   {
+    "date": "2026-08-16",
+    "description": "COSTCO WHSE",
+    "amount": -104.77,
+    "balance_after": 5606.38
+   },
+   {
+    "date": "2026-08-17",
+    "description": "UBER TECHNOLOGIES DIRECT DEP",
+    "amount": 1595.09,
+    "balance_after": 7201.47
+   },
+   {
+    "date": "2026-08-17",
+    "description": "TICKETMASTER",
+    "amount": -75.51,
+    "balance_after": 7125.96
+   },
+   {
+    "date": "2026-08-23",
+    "description": "COSTCO WHSE",
+    "amount": -85.73,
+    "balance_after": 7040.23
+   },
+   {
+    "date": "2026-08-24",
+    "description": "DOORDASH INC PAYOUT",
+    "amount": 255.79,
+    "balance_after": 7296.02
+   }
+  ]
+ },
+ {
+  "id": "thin-file-student",
+  "name": "Marcus - thin file, irregular income",
+  "story": "22, one student card opened 9 months ago, part-time campus job with gaps over summer, two overdraft fees. Not a decline, but not a clear approve either.",
+  "expected": "REFER - underwriter review with verification items",
+  "form": {
+   "fullName": "Marcus Lee",
+   "email": "mlee2026@example.edu",
+   "phone": "+1-614-555-0199",
+   "employmentType": "PART_TIME",
+   "statedAnnualIncome": 9000,
+   "requestedAmount": 3000,
+   "loanPurpose": "Cover tuition gap this semester",
+   "consentBankData": true,
+   "consentAltData": true
+  },
+  "bureau": {
+   "fileType": "thin",
+   "bureauScore": 641,
+   "monthsOnFile": 9,
+   "tradelines": 1,
+   "inquiries6m": 2,
+   "delinquencies24m": 0
+  },
+  "behaviour": {
+   "sessionSeconds": 380,
+   "incomeFieldEdits": 2,
+   "pasteSsn": false,
+   "pasteIncome": false,
+   "emailAgeDays": 900,
+   "voipPhone": false,
+   "deviceId": "dev-marcus-01"
+  },
+  "transactions": [
+   {
+    "date": "2026-06-02",
+    "description": "ZELLE TO J OKAFOR RENT",
+    "amount": -550,
+    "balance_after": -290
+   },
+   {
+    "date": "2026-06-02",
+    "description": "WALMART SUPERCENTER",
+    "amount": -65.04,
+    "balance_after": -355.04
+   },
+   {
+    "date": "2026-06-03",
+    "description": "DOORDASH*ORDER",
+    "amount": -64.57,
+    "balance_after": -419.61
+   },
+   {
+    "date": "2026-06-09",
+    "description": "COSTCO WHSE",
+    "amount": -69.02,
+    "balance_after": -488.63
+   },
+   {
+    "date": "2026-06-09",
+    "description": "TICKETMASTER",
+    "amount": -61.98,
+    "balance_after": -550.61
+   },
+   {
+    "date": "2026-06-10",
+    "description": "ATM WITHDRAWAL 7-ELEVEN",
+    "amount": -100,
+    "balance_after": -650.61
+   },
+   {
+    "date": "2026-06-12",
+    "description": "TICKETMASTER",
+    "amount": -53.07,
+    "balance_after": -703.68
+   },
+   {
+    "date": "2026-06-15",
+    "description": "OHIO STATE UNIV PAYROLL",
+    "amount": 819.12,
+    "balance_after": 115.44
+   },
+   {
+    "date": "2026-06-15",
+    "description": "STARBUCKS 2231",
+    "amount": -72.84,
+    "balance_after": 42.6
+   },
+   {
+    "date": "2026-06-16",
+    "description": "ALDI 77",
+    "amount": -67.92,
+    "balance_after": -25.32
+   },
+   {
+    "date": "2026-06-18",
+    "description": "VERIZON WIRELESS PMT",
+    "amount": -45,
+    "balance_after": -70.32
+   },
+   {
+    "date": "2026-06-19",
+    "description": "AMAZON MKTPLACE",
+    "amount": -34.85,
+    "balance_after": -105.17
+   },
+   {
+    "date": "2026-06-20",
+    "description": "VENMO CASHOUT",
+    "amount": 157.59,
+    "balance_after": 52.42
+   },
+   {
+    "date": "2026-06-22",
+    "description": "DISCOVER CARD PAYMENT",
+    "amount": -35,
+    "balance_after": 17.42
+   },
+   {
+    "date": "2026-06-22",
+    "description": "STARBUCKS 2231",
+    "amount": -67.11,
+    "balance_after": -49.69
+   },
+   {
+    "date": "2026-06-23",
+    "description": "COSTCO WHSE",
+    "amount": -90.84,
+    "balance_after": -140.53
+   },
+   {
+    "date": "2026-07-02",
+    "description": "COSTCO WHSE",
+    "amount": -79.19,
+    "balance_after": -219.72
+   },
+   {
+    "date": "2026-07-07",
+    "description": "CHIPOTLE 0442",
+    "amount": -18.83,
+    "balance_after": -238.55
+   },
+   {
+    "date": "2026-07-08",
+    "description": "STEAM PURCHASE",
+    "amount": -38.71,
+    "balance_after": -277.26
+   },
+   {
+    "date": "2026-07-09",
+    "description": "COSTCO WHSE",
+    "amount": -130.4,
+    "balance_after": -407.66
+   },
+   {
+    "date": "2026-07-15",
+    "description": "STEAM PURCHASE",
+    "amount": -50.76,
+    "balance_after": -458.42
+   },
+   {
+    "date": "2026-07-16",
+    "description": "ALDI 77",
+    "amount": -56.92,
+    "balance_after": -515.34
+   },
+   {
+    "date": "2026-07-18",
+    "description": "VERIZON WIRELESS PMT",
+    "amount": -45,
+    "balance_after": -560.34
+   },
+   {
+    "date": "2026-07-18",
+    "description": "OVERDRAFT FEE",
+    "amount": -35.0,
+    "balance_after": -595.34
+   },
+   {
+    "date": "2026-07-20",
+    "description": "VENMO CASHOUT",
+    "amount": 215.59,
+    "balance_after": -379.75
+   },
+   {
+    "date": "2026-07-20",
+    "description": "STARBUCKS 2231",
+    "amount": -46.52,
+    "balance_after": -426.27
+   },
+   {
+    "date": "2026-07-22",
+    "description": "DISCOVER CARD PAYMENT",
+    "amount": -35,
+    "balance_after": -461.27
+   },
+   {
+    "date": "2026-07-23",
+    "description": "COSTCO WHSE",
+    "amount": -85.21,
+    "balance_after": -546.48
+   },
+   {
+    "date": "2026-07-23",
+    "description": "ATM WITHDRAWAL 7-ELEVEN",
+    "amount": -60,
+    "balance_after": -606.48
+   },
+   {
+    "date": "2026-07-27",
+    "description": "NSF RETURNED ITEM FEE",
+    "amount": -34.0,
+    "balance_after": -640.48
+   },
+   {
+    "date": "2026-07-28",
+    "description": "TICKETMASTER",
+    "amount": -15.12,
+    "balance_after": -655.6
+   },
+   {
+    "date": "2026-07-29",
+    "description": "AMC THEATRES",
+    "amount": -71.27,
+    "balance_after": -726.87
+   },
+   {
+    "date": "2026-08-01",
+    "description": "AMC THEATRES",
+    "amount": -40.84,
+    "balance_after": -767.71
+   },
+   {
+    "date": "2026-08-02",
+    "description": "ZELLE TO J OKAFOR RENT",
+    "amount": -550,
+    "balance_after": -1317.71
+   },
+   {
+    "date": "2026-08-02",
+    "description": "COSTCO WHSE",
+    "amount": -136.41,
+    "balance_after": -1454.12
+   },
+   {
+    "date": "2026-08-09",
+    "description": "KROGER #1182",
+    "amount": -62.05,
+    "balance_after": -1516.17
+   },
+   {
+    "date": "2026-08-12",
+    "description": "AMAZON MKTPLACE",
+    "amount": -81.44,
+    "balance_after": -1597.61
+   },
+   {
+    "date": "2026-08-13",
+    "description": "STARBUCKS 2231",
+    "amount": -45.6,
+    "balance_after": -1643.21
+   },
+   {
+    "date": "2026-08-13",
+    "description": "ATM WITHDRAWAL 7-ELEVEN",
+    "amount": -40,
+    "balance_after": -1683.21
+   },
+   {
+    "date": "2026-08-15",
+    "description": "OHIO STATE UNIV PAYROLL",
+    "amount": 930.15,
+    "balance_after": -753.06
+   },
+   {
+    "date": "2026-08-16",
+    "description": "KROGER #1182",
+    "amount": -74.72,
+    "balance_after": -827.78
+   },
+   {
+    "date": "2026-08-18",
+    "description": "VERIZON WIRELESS PMT",
+    "amount": -45,
+    "balance_after": -872.78
+   },
+   {
+    "date": "2026-08-20",
+    "description": "VENMO CASHOUT",
+    "amount": 236.54,
+    "balance_after": -636.24
+   },
+   {
+    "date": "2026-08-22",
+    "description": "DISCOVER CARD PAYMENT",
+    "amount": -35,
+    "balance_after": -671.24
+   },
+   {
+    "date": "2026-08-23",
+    "description": "KROGER #1182",
+    "amount": -56.03,
+    "balance_after": -727.27
+   },
+   {
+    "date": "2026-08-23",
+    "description": "DOORDASH*ORDER",
+    "amount": -43.7,
+    "balance_after": -770.97
+   },
+   {
+    "date": "2026-08-27",
+    "description": "AMC THEATRES",
+    "amount": -28.97,
+    "balance_after": -799.94
+   },
+   {
+    "date": "2026-08-28",
+    "description": "STEAM PURCHASE",
+    "amount": -39.25,
+    "balance_after": -839.19
+   }
+  ]
+ },
+ {
+  "id": "prime-thick-file",
+  "name": "Elena - prime thick file",
+  "story": "41, 15-year bureau history, score 748, salaried, mortgage and auto loan paid like clockwork. The easy case - shows the engine does not over-refer good customers.",
+  "expected": "APPROVE - straight-through",
+  "form": {
+   "fullName": "Elena Petrova",
+   "email": "elena.p@example.com",
+   "phone": "+1-312-555-0117",
+   "employmentType": "FULL_TIME",
+   "statedAnnualIncome": 94000,
+   "requestedAmount": 6000,
+   "loanPurpose": "Kitchen renovation",
+   "consentBankData": true,
+   "consentAltData": true
+  },
+  "bureau": {
+   "fileType": "thick",
+   "bureauScore": 748,
+   "monthsOnFile": 182,
+   "tradelines": 7,
+   "inquiries6m": 0,
+   "delinquencies24m": 0
+  },
+  "behaviour": {
+   "sessionSeconds": 620,
+   "incomeFieldEdits": 0,
+   "pasteSsn": false,
+   "pasteIncome": false,
+   "emailAgeDays": 3800,
+   "voipPhone": false,
+   "deviceId": "dev-elena-01"
+  },
+  "transactions": [
+   {
+    "date": "2026-06-01",
+    "description": "ACH CREDIT NORTHWIND LLC PAYROLL",
+    "amount": 3120.0,
+    "balance_after": 9320.0
+   },
+   {
+    "date": "2026-06-02",
+    "description": "COSTCO WHSE",
+    "amount": -68.8,
+    "balance_after": 9251.2
+   },
+   {
+    "date": "2026-06-03",
+    "description": "WELLS FARGO HOME MTG PYMT",
+    "amount": -1650,
+    "balance_after": 7601.2
+   },
+   {
+    "date": "2026-06-05",
+    "description": "TOYOTA FINANCIAL AUTO LOAN",
+    "amount": -410,
+    "balance_after": 7191.2
+   },
+   {
+    "date": "2026-06-07",
+    "description": "NETFLIX.COM",
+    "amount": -15.49,
+    "balance_after": 7175.71
+   },
+   {
+    "date": "2026-06-07",
+    "description": "STEAM PURCHASE",
+    "amount": -20.29,
+    "balance_after": 7155.42
+   },
+   {
+    "date": "2026-06-09",
+    "description": "COMED ELECTRIC BILL",
+    "amount": -160.36,
+    "balance_after": 6995.06
+   },
+   {
+    "date": "2026-06-09",
+    "description": "ALDI 77",
+    "amount": -106.06,
+    "balance_after": 6889.0
+   },
+   {
+    "date": "2026-06-09",
+    "description": "AMAZON MKTPLACE",
+    "amount": -54.77,
+    "balance_after": 6834.23
+   },
+   {
+    "date": "2026-06-10",
+    "description": "STARBUCKS 2231",
+    "amount": -19.95,
+    "balance_after": 6814.28
+   },
+   {
+    "date": "2026-06-11",
+    "description": "AT&T WIRELESS AUTOPAY",
+    "amount": -85,
+    "balance_after": 6729.28
+   },
+   {
+    "date": "2026-06-12",
+    "description": "DOORDASH*ORDER",
+    "amount": -14.34,
+    "balance_after": 6714.94
+   },
+   {
+    "date": "2026-06-15",
+    "description": "ACH CREDIT NORTHWIND LLC PAYROLL",
+    "amount": 3120.0,
+    "balance_after": 9834.94
+   },
+   {
+    "date": "2026-06-16",
+    "description": "WALMART SUPERCENTER",
+    "amount": -55.02,
+    "balance_after": 9779.92
+   },
+   {
+    "date": "2026-06-16",
+    "description": "STARBUCKS 2231",
+    "amount": -17.77,
+    "balance_after": 9762.15
+   },
+   {
+    "date": "2026-06-16",
+    "description": "TICKETMASTER",
+    "amount": -45.51,
+    "balance_after": 9716.64
+   },
+   {
+    "date": "2026-06-20",
+    "description": "CHASE CARD AUTOPAY",
+    "amount": -600,
+    "balance_after": 9116.64
+   },
+   {
+    "date": "2026-06-23",
+    "description": "KROGER #1182",
+    "amount": -100.61,
+    "balance_after": 9016.03
+   },
+   {
+    "date": "2026-07-01",
+    "description": "ACH CREDIT NORTHWIND LLC PAYROLL",
+    "amount": 3120.0,
+    "balance_after": 12136.03
+   },
+   {
+    "date": "2026-07-02",
+    "description": "COSTCO WHSE",
+    "amount": -125.45,
+    "balance_after": 12010.58
+   },
+   {
+    "date": "2026-07-03",
+    "description": "WELLS FARGO HOME MTG PYMT",
+    "amount": -1650,
+    "balance_after": 10360.58
+   },
+   {
+    "date": "2026-07-05",
+    "description": "TOYOTA FINANCIAL AUTO LOAN",
+    "amount": -410,
+    "balance_after": 9950.58
+   },
+   {
+    "date": "2026-07-07",
+    "description": "NETFLIX.COM",
+    "amount": -15.49,
+    "balance_after": 9935.09
+   },
+   {
+    "date": "2026-07-09",
+    "description": "COMED ELECTRIC BILL",
+    "amount": -150.09,
+    "balance_after": 9785.0
+   },
+   {
+    "date": "2026-07-09",
+    "description": "KROGER #1182",
+    "amount": -98.89,
+    "balance_after": 9686.11
+   },
+   {
+    "date": "2026-07-09",
+    "description": "AMAZON MKTPLACE",
+    "amount": -78.03,
+    "balance_after": 9608.08
+   },
+   {
+    "date": "2026-07-10",
+    "description": "STARBUCKS 2231",
+    "amount": -61.91,
+    "balance_after": 9546.17
+   },
+   {
+    "date": "2026-07-11",
+    "description": "AT&T WIRELESS AUTOPAY",
+    "amount": -85,
+    "balance_after": 9461.17
+   },
+   {
+    "date": "2026-07-12",
+    "description": "UBER EATS",
+    "amount": -49.48,
+    "balance_after": 9411.69
+   },
+   {
+    "date": "2026-07-15",
+    "description": "ACH CREDIT NORTHWIND LLC PAYROLL",
+    "amount": 3120.0,
+    "balance_after": 12531.69
+   },
+   {
+    "date": "2026-07-16",
+    "description": "KROGER #1182",
+    "amount": -135.83,
+    "balance_after": 12395.86
+   },
+   {
+    "date": "2026-07-18",
+    "description": "DOORDASH*ORDER",
+    "amount": -66.62,
+    "balance_after": 12329.24
+   },
+   {
+    "date": "2026-07-20",
+    "description": "CHASE CARD AUTOPAY",
+    "amount": -600,
+    "balance_after": 11729.24
+   },
+   {
+    "date": "2026-07-20",
+    "description": "UBER EATS",
+    "amount": -70.26,
+    "balance_after": 11658.98
+   },
+   {
+    "date": "2026-07-23",
+    "description": "ALDI 77",
+    "amount": -67.46,
+    "balance_after": 11591.52
+   },
+   {
+    "date": "2026-07-25",
+    "description": "AMAZON MKTPLACE",
+    "amount": -57.37,
+    "balance_after": 11534.15
+   },
+   {
+    "date": "2026-08-01",
+    "description": "ACH CREDIT NORTHWIND LLC PAYROLL",
+    "amount": 3120.0,
+    "balance_after": 14654.15
+   },
+   {
+    "date": "2026-08-02",
+    "description": "KROGER #1182",
+    "amount": -71.99,
+    "balance_after": 14582.16
+   },
+   {
+    "date": "2026-08-03",
+    "description": "WELLS FARGO HOME MTG PYMT",
+    "amount": -1650,
+    "balance_after": 12932.16
+   },
+   {
+    "date": "2026-08-05",
+    "description": "TOYOTA FINANCIAL AUTO LOAN",
+    "amount": -410,
+    "balance_after": 12522.16
+   },
+   {
+    "date": "2026-08-07",
+    "description": "NETFLIX.COM",
+    "amount": -15.49,
+    "balance_after": 12506.67
+   },
+   {
+    "date": "2026-08-07",
+    "description": "AMAZON MKTPLACE",
+    "amount": -42.99,
+    "balance_after": 12463.68
+   },
+   {
+    "date": "2026-08-07",
+    "description": "TICKETMASTER",
+    "amount": -56.43,
+    "balance_after": 12407.25
+   },
+   {
+    "date": "2026-08-08",
+    "description": "TICKETMASTER",
+    "amount": -23.95,
+    "balance_after": 12383.3
+   },
+   {
+    "date": "2026-08-09",
+    "description": "COMED ELECTRIC BILL",
+    "amount": -150.07,
+    "balance_after": 12233.23
+   },
+   {
+    "date": "2026-08-09",
+    "description": "COSTCO WHSE",
+    "amount": -85.22,
+    "balance_after": 12148.01
+   },
+   {
+    "date": "2026-08-11",
+    "description": "AT&T WIRELESS AUTOPAY",
+    "amount": -85,
+    "balance_after": 12063.01
+   },
+   {
+    "date": "2026-08-12",
+    "description": "STARBUCKS 2231",
+    "amount": -25.76,
+    "balance_after": 12037.25
+   },
+   {
+    "date": "2026-08-15",
+    "description": "ACH CREDIT NORTHWIND LLC PAYROLL",
+    "amount": 3120.0,
+    "balance_after": 15157.25
+   },
+   {
+    "date": "2026-08-16",
+    "description": "WALMART SUPERCENTER",
+    "amount": -139.12,
+    "balance_after": 15018.13
+   },
+   {
+    "date": "2026-08-20",
+    "description": "CHASE CARD AUTOPAY",
+    "amount": -600,
+    "balance_after": 14418.13
+   },
+   {
+    "date": "2026-08-23",
+    "description": "ALDI 77",
+    "amount": -95.14,
+    "balance_after": 14322.99
+   },
+   {
+    "date": "2026-08-29",
+    "description": "DOORDASH*ORDER",
+    "amount": -45.44,
+    "balance_after": 14277.55
+   },
+   {
+    "date": "2026-08-30",
+    "description": "AMAZON MKTPLACE",
+    "amount": -81.58,
+    "balance_after": 14195.97
+   }
+  ]
+ },
+ {
+  "id": "stretched-thick-file",
+  "name": "Daniel - thick file under strain",
+  "story": "38, established bureau file with three recent delinquencies and six inquiries; income that swings month to month, a falling balance, overdraft fees, sports-betting deposits and loan payments eating most of what comes in. A decline the applicant deserves a clear explanation for.",
+  "expected": "DECLINE - adverse-action notice with exact reasons",
+  "form": {
+   "fullName": "Daniel Ruiz",
+   "email": "druiz@example.com",
+   "phone": "+1-702-555-0163",
+   "employmentType": "FULL_TIME",
+   "statedAnnualIncome": 36000,
+   "requestedAmount": 8000,
+   "loanPurpose": "Consolidate cards",
+   "consentBankData": true,
+   "consentAltData": true
+  },
+  "bureau": {
+   "fileType": "thick",
+   "bureauScore": 578,
+   "monthsOnFile": 96,
+   "tradelines": 9,
+   "inquiries6m": 6,
+   "delinquencies24m": 3
+  },
+  "behaviour": {
+   "sessionSeconds": 300,
+   "incomeFieldEdits": 1,
+   "pasteSsn": false,
+   "pasteIncome": false,
+   "emailAgeDays": 2100,
+   "voipPhone": false,
+   "deviceId": "dev-daniel-01"
+  },
+  "transactions": [
+   {
+    "date": "2026-06-02",
+    "description": "WALMART SUPERCENTER",
+    "amount": -125.95,
+    "balance_after": 2474.05
+   },
+   {
+    "date": "2026-06-04",
+    "description": "ZELLE TO SUNRISE APTS RENT",
+    "amount": -1450,
+    "balance_after": 1024.05
+   },
+   {
+    "date": "2026-06-05",
+    "description": "CAESARS ENTERTAINMENT PAYROLL",
+    "amount": 1412.68,
+    "balance_after": 2436.73
+   },
+   {
+    "date": "2026-06-05",
+    "description": "TICKETMASTER",
+    "amount": -58.95,
+    "balance_after": 2377.78
+   },
+   {
+    "date": "2026-06-05",
+    "description": "DOORDASH*ORDER",
+    "amount": -10.08,
+    "balance_after": 2367.7
+   },
+   {
+    "date": "2026-06-06",
+    "description": "AMC THEATRES",
+    "amount": -11.09,
+    "balance_after": 2356.61
+   },
+   {
+    "date": "2026-06-07",
+    "description": "ATM WITHDRAWAL 7-ELEVEN",
+    "amount": -40,
+    "balance_after": 2316.61
+   },
+   {
+    "date": "2026-06-08",
+    "description": "ONEMAIN FINANCIAL LOAN PMT",
+    "amount": -390,
+    "balance_after": 1926.61
+   },
+   {
+    "date": "2026-06-09",
+    "description": "SANTANDER AUTO LOAN PMT",
+    "amount": -465,
+    "balance_after": 1461.61
+   },
+   {
+    "date": "2026-06-09",
+    "description": "WALMART SUPERCENTER",
+    "amount": -132.33,
+    "balance_after": 1329.28
+   },
+   {
+    "date": "2026-06-12",
+    "description": "CAESARS ENTERTAINMENT PAYROLL",
+    "amount": 900.0,
+    "balance_after": 2229.28
+   },
+   {
+    "date": "2026-06-12",
+    "description": "AFFIRM INC INSTALLMENT",
+    "amount": -145,
+    "balance_after": 2084.28
+   },
+   {
+    "date": "2026-06-12",
+    "description": "AMC THEATRES",
+    "amount": -50.7,
+    "balance_after": 2033.58
+   },
+   {
+    "date": "2026-06-16",
+    "description": "KROGER #1182",
+    "amount": -95.63,
+    "balance_after": 1937.95
+   },
+   {
+    "date": "2026-06-19",
+    "description": "TICKETMASTER",
+    "amount": -70.29,
+    "balance_after": 1867.66
+   },
+   {
+    "date": "2026-06-20",
+    "description": "CAESARS ENTERTAINMENT PAYROLL",
+    "amount": 1412.68,
+    "balance_after": 3280.34
+   },
+   {
+    "date": "2026-06-21",
+    "description": "CAPITAL ONE CARD PMT",
+    "amount": -320,
+    "balance_after": 2960.34
+   },
+   {
+    "date": "2026-06-21",
+    "description": "AMAZON MKTPLACE",
+    "amount": -15.59,
+    "balance_after": 2944.75
+   },
+   {
+    "date": "2026-06-23",
+    "description": "KROGER #1182",
+    "amount": -91.88,
+    "balance_after": 2852.87
+   },
+   {
+    "date": "2026-06-24",
+    "description": "STEAM PURCHASE",
+    "amount": -44.2,
+    "balance_after": 2808.67
+   },
+   {
+    "date": "2026-06-24",
+    "description": "STARBUCKS 2231",
+    "amount": -64.08,
+    "balance_after": 2744.59
+   },
+   {
+    "date": "2026-06-24",
+    "description": "STARBUCKS 2231",
+    "amount": -49.02,
+    "balance_after": 2695.57
+   },
+   {
+    "date": "2026-06-28",
+    "description": "DRAFTKINGS DEPOSIT",
+    "amount": -215.23,
+    "balance_after": 2480.34
+   },
+   {
+    "date": "2026-06-30",
+    "description": "DRAFTKINGS DEPOSIT",
+    "amount": -136.76,
+    "balance_after": 2343.58
+   },
+   {
+    "date": "2026-07-02",
+    "description": "KROGER #1182",
+    "amount": -119.91,
+    "balance_after": 2223.67
+   },
+   {
+    "date": "2026-07-04",
+    "description": "DOORDASH*ORDER",
+    "amount": -27.89,
+    "balance_after": 2195.78
+   },
+   {
+    "date": "2026-07-05",
+    "description": "CAESARS ENTERTAINMENT PAYROLL",
+    "amount": 1051.65,
+    "balance_after": 3247.43
+   },
+   {
+    "date": "2026-07-08",
+    "description": "ONEMAIN FINANCIAL LOAN PMT",
+    "amount": -390,
+    "balance_after": 2857.43
+   },
+   {
+    "date": "2026-07-09",
+    "description": "SANTANDER AUTO LOAN PMT",
+    "amount": -465,
+    "balance_after": 2392.43
+   },
+   {
+    "date": "2026-07-09",
+    "description": "ALDI 77",
+    "amount": -77.05,
+    "balance_after": 2315.38
+   },
+   {
+    "date": "2026-07-09",
+    "description": "DRAFTKINGS DEPOSIT",
+    "amount": -204.45,
+    "balance_after": 2110.93
+   },
+   {
+    "date": "2026-07-11",
+    "description": "TICKETMASTER",
+    "amount": -68.6,
+    "balance_after": 2042.33
+   },
+   {
+    "date": "2026-07-11",
+    "description": "ATM WITHDRAWAL 7-ELEVEN",
+    "amount": -100,
+    "balance_after": 1942.33
+   },
+   {
+    "date": "2026-07-12",
+    "description": "AFFIRM INC INSTALLMENT",
+    "amount": -145,
+    "balance_after": 1797.33
+   },
+   {
+    "date": "2026-07-12",
+    "description": "TICKETMASTER",
+    "amount": -59.35,
+    "balance_after": 1737.98
+   },
+   {
+    "date": "2026-07-12",
+    "description": "NSF RETURNED ITEM FEE",
+    "amount": -34.0,
+    "balance_after": 1703.98
+   },
+   {
+    "date": "2026-07-14",
+    "description": "NV ENERGY PAYMENT",
+    "amount": -150.06,
+    "balance_after": 1553.92
+   },
+   {
+    "date": "2026-07-16",
+    "description": "COSTCO WHSE",
+    "amount": -125.91,
+    "balance_after": 1428.01
+   },
+   {
+    "date": "2026-07-16",
+    "description": "STARBUCKS 2231",
+    "amount": -51.29,
+    "balance_after": 1376.72
+   },
+   {
+    "date": "2026-07-17",
+    "description": "CRICKET WIRELESS",
+    "amount": -55,
+    "balance_after": 1321.72
+   },
+   {
+    "date": "2026-07-17",
+    "description": "DOORDASH*ORDER",
+    "amount": -75.33,
+    "balance_after": 1246.39
+   },
+   {
+    "date": "2026-07-17",
+    "description": "FANDUEL SPORTSBOOK",
+    "amount": -162.35,
+    "balance_after": 1084.04
+   },
+   {
+    "date": "2026-07-20",
+    "description": "CAESARS ENTERTAINMENT PAYROLL",
+    "amount": 1051.65,
+    "balance_after": 2135.69
+   },
+   {
+    "date": "2026-07-21",
+    "description": "CAPITAL ONE CARD PMT",
+    "amount": -320,
+    "balance_after": 1815.69
+   },
+   {
+    "date": "2026-07-23",
+    "description": "WALMART SUPERCENTER",
+    "amount": -132.35,
+    "balance_after": 1683.34
+   },
+   {
+    "date": "2026-07-24",
+    "description": "OVERDRAFT FEE",
+    "amount": -35.0,
+    "balance_after": 1648.34
+   },
+   {
+    "date": "2026-07-25",
+    "description": "AMC THEATRES",
+    "amount": -55.25,
+    "balance_after": 1593.09
+   },
+   {
+    "date": "2026-07-25",
+    "description": "AMC THEATRES",
+    "amount": -22.1,
+    "balance_after": 1570.99
+   },
+   {
+    "date": "2026-07-27",
+    "description": "STEAM PURCHASE",
+    "amount": -71.86,
+    "balance_after": 1499.13
+   },
+   {
+    "date": "2026-07-29",
+    "description": "AMC THEATRES",
+    "amount": -49.42,
+    "balance_after": 1449.71
+   },
+   {
+    "date": "2026-08-02",
+    "description": "KROGER #1182",
+    "amount": -113.88,
+    "balance_after": 1335.83
+   },
+   {
+    "date": "2026-08-04",
+    "description": "ZELLE TO SUNRISE APTS RENT",
+    "amount": -1450,
+    "balance_after": -114.17
+   },
+   {
+    "date": "2026-08-05",
+    "description": "CAESARS ENTERTAINMENT PAYROLL",
+    "amount": 1701.02,
+    "balance_after": 1586.85
+   },
+   {
+    "date": "2026-08-05",
+    "description": "STEAM PURCHASE",
+    "amount": -18.24,
+    "balance_after": 1568.61
+   },
+   {
+    "date": "2026-08-06",
+    "description": "ATM WITHDRAWAL 7-ELEVEN",
+    "amount": -100,
+    "balance_after": 1468.61
+   },
+   {
+    "date": "2026-08-08",
+    "description": "ONEMAIN FINANCIAL LOAN PMT",
+    "amount": -390,
+    "balance_after": 1078.61
+   },
+   {
+    "date": "2026-08-08",
+    "description": "STEAM PURCHASE",
+    "amount": -14.56,
+    "balance_after": 1064.05
+   },
+   {
+    "date": "2026-08-08",
+    "description": "BETMGM ONLINE",
+    "amount": -240.5,
+    "balance_after": 823.55
+   },
+   {
+    "date": "2026-08-09",
+    "description": "SANTANDER AUTO LOAN PMT",
+    "amount": -465,
+    "balance_after": 358.55
+   },
+   {
+    "date": "2026-08-09",
+    "description": "COSTCO WHSE",
+    "amount": -98.19,
+    "balance_after": 260.36
+   },
+   {
+    "date": "2026-08-12",
+    "description": "AFFIRM INC INSTALLMENT",
+    "amount": -145,
+    "balance_after": 115.36
+   },
+   {
+    "date": "2026-08-13",
+    "description": "FANDUEL SPORTSBOOK",
+    "amount": -82.56,
+    "balance_after": 32.8
+   },
+   {
+    "date": "2026-08-15",
+    "description": "AMAZON MKTPLACE",
+    "amount": -14.51,
+    "balance_after": 18.29
+   },
+   {
+    "date": "2026-08-16",
+    "description": "COSTCO WHSE",
+    "amount": -98.16,
+    "balance_after": -79.87
+   },
+   {
+    "date": "2026-08-17",
+    "description": "OVERDRAFT FEE",
+    "amount": -35.0,
+    "balance_after": -114.87
+   },
+   {
+    "date": "2026-08-20",
+    "description": "CAESARS ENTERTAINMENT PAYROLL",
+    "amount": 1701.02,
+    "balance_after": 1586.15
+   },
+   {
+    "date": "2026-08-21",
+    "description": "CAPITAL ONE CARD PMT",
+    "amount": -320,
+    "balance_after": 1266.15
+   },
+   {
+    "date": "2026-08-21",
+    "description": "AMAZON MKTPLACE",
+    "amount": -19.87,
+    "balance_after": 1246.28
+   },
+   {
+    "date": "2026-08-22",
+    "description": "CHIPOTLE 0442",
+    "amount": -68.58,
+    "balance_after": 1177.7
+   },
+   {
+    "date": "2026-08-23",
+    "description": "KROGER #1182",
+    "amount": -114.43,
+    "balance_after": 1063.27
+   },
+   {
+    "date": "2026-08-29",
+    "description": "CHIPOTLE 0442",
+    "amount": -79.13,
+    "balance_after": 984.14
+   },
+   {
+    "date": "2026-08-29",
+    "description": "UBER EATS",
+    "amount": -72.84,
+    "balance_after": 911.3
+   },
+   {
+    "date": "2026-08-29",
+    "description": "AMC THEATRES",
+    "amount": -80.4,
+    "balance_after": 830.9
+   },
+   {
+    "date": "2026-08-29",
+    "description": "AMC THEATRES",
+    "amount": -82.53,
+    "balance_after": 748.37
+   },
+   {
+    "date": "2026-08-31",
+    "description": "NSF RETURNED ITEM FEE",
+    "amount": -34.0,
+    "balance_after": 714.37
+   }
+  ]
+ },
+ {
+  "id": "synthetic-identity",
+  "name": "\"Alex Morgan\" - synthetic identity",
+  "story": "Claims a thin file, but the identity number was pasted, the email is 12 days old, the phone is VoIP and the same device submitted four applications this month. Whatever the cash flow says, this never reaches pricing.",
+  "expected": "BLOCK by fraud gate - manual fraud review",
+  "form": {
+   "fullName": "Alex Morgan",
+   "email": "alex.morgan.9931@example.net",
+   "phone": "+1-929-555-0100",
+   "employmentType": "FULL_TIME",
+   "statedAnnualIncome": 78000,
+   "requestedAmount": 9500,
+   "loanPurpose": "Business inventory",
+   "consentBankData": true,
+   "consentAltData": true
+  },
+  "bureau": {
+   "fileType": "thin",
+   "bureauScore": null,
+   "monthsOnFile": 4,
+   "tradelines": 1,
+   "inquiries6m": 3,
+   "delinquencies24m": 0
+  },
+  "behaviour": {
+   "sessionSeconds": 84,
+   "incomeFieldEdits": 0,
+   "pasteSsn": true,
+   "pasteIncome": true,
+   "emailAgeDays": 12,
+   "voipPhone": true,
+   "deviceId": "dev-ring-7f3a",
+   "deviceAppsLast30dSeed": 4
+  },
+  "transactions": [
+   {
+    "date": "2026-06-01",
+    "description": "ACH CREDIT APEX HOLDINGS PAYROLL",
+    "amount": 3250.0,
+    "balance_after": 6150.0
+   },
+   {
+    "date": "2026-06-02",
+    "description": "ZELLE TO K NGUYEN RENT",
+    "amount": -1300,
+    "balance_after": 4850.0
+   },
+   {
+    "date": "2026-06-02",
+    "description": "COSTCO WHSE",
+    "amount": -83.82,
+    "balance_after": 4766.18
+   },
+   {
+    "date": "2026-06-09",
+    "description": "KROGER #1182",
+    "amount": -85.31,
+    "balance_after": 4680.87
+   },
+   {
+    "date": "2026-06-10",
+    "description": "MINT MOBILE",
+    "amount": -30,
+    "balance_after": 4650.87
+   },
+   {
+    "date": "2026-06-10",
+    "description": "STARBUCKS 2231",
+    "amount": -17.58,
+    "balance_after": 4633.29
+   },
+   {
+    "date": "2026-06-13",
+    "description": "AMAZON MKTPLACE",
+    "amount": -48.32,
+    "balance_after": 4584.97
+   },
+   {
+    "date": "2026-06-15",
+    "description": "ACH CREDIT APEX HOLDINGS PAYROLL",
+    "amount": 3250.0,
+    "balance_after": 7834.97
+   },
+   {
+    "date": "2026-06-15",
+    "description": "TICKETMASTER",
+    "amount": -62.44,
+    "balance_after": 7772.53
+   },
+   {
+    "date": "2026-06-16",
+    "description": "WALMART SUPERCENTER",
+    "amount": -116.38,
+    "balance_after": 7656.15
+   },
+   {
+    "date": "2026-06-23",
+    "description": "WALMART SUPERCENTER",
+    "amount": -83.73,
+    "balance_after": 7572.42
+   },
+   {
+    "date": "2026-07-01",
+    "description": "ACH CREDIT APEX HOLDINGS PAYROLL",
+    "amount": 3250.0,
+    "balance_after": 10822.42
+   },
+   {
+    "date": "2026-07-02",
+    "description": "ZELLE TO K NGUYEN RENT",
+    "amount": -1300,
+    "balance_after": 9522.42
+   },
+   {
+    "date": "2026-07-02",
+    "description": "KROGER #1182",
+    "amount": -137.59,
+    "balance_after": 9384.83
+   },
+   {
+    "date": "2026-07-05",
+    "description": "STEAM PURCHASE",
+    "amount": -73.57,
+    "balance_after": 9311.26
+   },
+   {
+    "date": "2026-07-09",
+    "description": "WALMART SUPERCENTER",
+    "amount": -62.15,
+    "balance_after": 9249.11
+   },
+   {
+    "date": "2026-07-10",
+    "description": "MINT MOBILE",
+    "amount": -30,
+    "balance_after": 9219.11
+   },
+   {
+    "date": "2026-07-15",
+    "description": "ACH CREDIT APEX HOLDINGS PAYROLL",
+    "amount": 3250.0,
+    "balance_after": 12469.11
+   },
+   {
+    "date": "2026-07-16",
+    "description": "ALDI 77",
+    "amount": -58.36,
+    "balance_after": 12410.75
+   },
+   {
+    "date": "2026-07-18",
+    "description": "TICKETMASTER",
+    "amount": -62.23,
+    "balance_after": 12348.52
+   },
+   {
+    "date": "2026-07-22",
+    "description": "CHIPOTLE 0442",
+    "amount": -39.85,
+    "balance_after": 12308.67
+   },
+   {
+    "date": "2026-07-23",
+    "description": "KROGER #1182",
+    "amount": -77.99,
+    "balance_after": 12230.68
+   },
+   {
+    "date": "2026-08-01",
+    "description": "ACH CREDIT APEX HOLDINGS PAYROLL",
+    "amount": 3250.0,
+    "balance_after": 15480.68
+   },
+   {
+    "date": "2026-08-02",
+    "description": "ZELLE TO K NGUYEN RENT",
+    "amount": -1300,
+    "balance_after": 14180.68
+   },
+   {
+    "date": "2026-08-02",
+    "description": "WALMART SUPERCENTER",
+    "amount": -122.96,
+    "balance_after": 14057.72
+   },
+   {
+    "date": "2026-08-09",
+    "description": "KROGER #1182",
+    "amount": -91.15,
+    "balance_after": 13966.57
+   },
+   {
+    "date": "2026-08-10",
+    "description": "MINT MOBILE",
+    "amount": -30,
+    "balance_after": 13936.57
+   },
+   {
+    "date": "2026-08-15",
+    "description": "ACH CREDIT APEX HOLDINGS PAYROLL",
+    "amount": 3250.0,
+    "balance_after": 17186.57
+   },
+   {
+    "date": "2026-08-16",
+    "description": "WALMART SUPERCENTER",
+    "amount": -77.86,
+    "balance_after": 17108.71
+   },
+   {
+    "date": "2026-08-23",
+    "description": "WALMART SUPERCENTER",
+    "amount": -108.93,
+    "balance_after": 16999.78
+   },
+   {
+    "date": "2026-08-26",
+    "description": "CHIPOTLE 0442",
+    "amount": -15.36,
+    "balance_after": 16984.42
+   },
+   {
+    "date": "2026-08-28",
+    "description": "UBER EATS",
+    "amount": -14.06,
+    "balance_after": 16970.36
+   },
+   {
+    "date": "2026-08-28",
+    "description": "STARBUCKS 2231",
+    "amount": -43.49,
+    "balance_after": 16926.87
+   }
+  ]
+ },
+ {
+  "id": "income-inflator",
+  "name": "Sofia - stated income does not match",
+  "story": "Genuine thick-file customer, but stated $92k on the form after editing the field four times; the bank feed shows about $46k. Not fraud-blocked outright - a step-up verification with a document request.",
+  "expected": "STEP-UP verification - refer with income proof request",
+  "form": {
+   "fullName": "Sofia Alvarez",
+   "email": "sofia.alv@example.com",
+   "phone": "+1-305-555-0188",
+   "employmentType": "FULL_TIME",
+   "statedAnnualIncome": 92000,
+   "requestedAmount": 12000,
+   "loanPurpose": "Medical expenses",
+   "consentBankData": true,
+   "consentAltData": true
+  },
+  "bureau": {
+   "fileType": "thick",
+   "bureauScore": 688,
+   "monthsOnFile": 130,
+   "tradelines": 5,
+   "inquiries6m": 1,
+   "delinquencies24m": 0
+  },
+  "behaviour": {
+   "sessionSeconds": 410,
+   "incomeFieldEdits": 4,
+   "pasteSsn": false,
+   "pasteIncome": true,
+   "emailAgeDays": 2600,
+   "voipPhone": false,
+   "deviceId": "dev-sofia-01"
+  },
+  "transactions": [
+   {
+    "date": "2026-06-01",
+    "description": "ZELLE TO R GOMEZ RENT",
+    "amount": -1250,
+    "balance_after": 650
+   },
+   {
+    "date": "2026-06-02",
+    "description": "ALDI 77",
+    "amount": -107.84,
+    "balance_after": 542.16
+   },
+   {
+    "date": "2026-06-02",
+    "description": "DOORDASH*ORDER",
+    "amount": -10.4,
+    "balance_after": 531.76
+   },
+   {
+    "date": "2026-06-06",
+    "description": "UBER EATS",
+    "amount": -79.85,
+    "balance_after": 451.91
+   },
+   {
+    "date": "2026-06-07",
+    "description": "BAPTIST HEALTH PAYROLL DEP",
+    "amount": 1879.28,
+    "balance_after": 2331.19
+   },
+   {
+    "date": "2026-06-07",
+    "description": "CHIPOTLE 0442",
+    "amount": -42.87,
+    "balance_after": 2288.32
+   },
+   {
+    "date": "2026-06-09",
+    "description": "WALMART SUPERCENTER",
+    "amount": -99.79,
+    "balance_after": 2188.53
+   },
+   {
+    "date": "2026-06-13",
+    "description": "FPL ELECTRIC AUTOPAY",
+    "amount": -132.07,
+    "balance_after": 2056.46
+   },
+   {
+    "date": "2026-06-16",
+    "description": "T-MOBILE AUTOPAY",
+    "amount": -70,
+    "balance_after": 1986.46
+   },
+   {
+    "date": "2026-06-16",
+    "description": "KROGER #1182",
+    "amount": -134.74,
+    "balance_after": 1851.72
+   },
+   {
+    "date": "2026-06-21",
+    "description": "CHIPOTLE 0442",
+    "amount": -49.36,
+    "balance_after": 1802.36
+   },
+   {
+    "date": "2026-06-22",
+    "description": "BAPTIST HEALTH PAYROLL DEP",
+    "amount": 1879.28,
+    "balance_after": 3681.64
+   },
+   {
+    "date": "2026-06-22",
+    "description": "AMC THEATRES",
+    "amount": -29.56,
+    "balance_after": 3652.08
+   },
+   {
+    "date": "2026-06-23",
+    "description": "KROGER #1182",
+    "amount": -77.26,
+    "balance_after": 3574.82
+   },
+   {
+    "date": "2026-06-24",
+    "description": "CITI CARD PAYMENT",
+    "amount": -250,
+    "balance_after": 3324.82
+   },
+   {
+    "date": "2026-06-26",
+    "description": "DOORDASH*ORDER",
+    "amount": -84.58,
+    "balance_after": 3240.24
+   },
+   {
+    "date": "2026-07-01",
+    "description": "ZELLE TO R GOMEZ RENT",
+    "amount": -1250,
+    "balance_after": 1990.24
+   },
+   {
+    "date": "2026-07-01",
+    "description": "STARBUCKS 2231",
+    "amount": -56.53,
+    "balance_after": 1933.71
+   },
+   {
+    "date": "2026-07-02",
+    "description": "COSTCO WHSE",
+    "amount": -75.88,
+    "balance_after": 1857.83
+   },
+   {
+    "date": "2026-07-07",
+    "description": "BAPTIST HEALTH PAYROLL DEP",
+    "amount": 1911.08,
+    "balance_after": 3768.91
+   },
+   {
+    "date": "2026-07-09",
+    "description": "COSTCO WHSE",
+    "amount": -64.03,
+    "balance_after": 3704.88
+   },
+   {
+    "date": "2026-07-10",
+    "description": "UBER EATS",
+    "amount": -83.67,
+    "balance_after": 3621.21
+   },
+   {
+    "date": "2026-07-11",
+    "description": "UBER EATS",
+    "amount": -72.25,
+    "balance_after": 3548.96
+   },
+   {
+    "date": "2026-07-12",
+    "description": "DOORDASH*ORDER",
+    "amount": -72.61,
+    "balance_after": 3476.35
+   },
+   {
+    "date": "2026-07-13",
+    "description": "FPL ELECTRIC AUTOPAY",
+    "amount": -148.64,
+    "balance_after": 3327.71
+   },
+   {
+    "date": "2026-07-16",
+    "description": "T-MOBILE AUTOPAY",
+    "amount": -70,
+    "balance_after": 3257.71
+   },
+   {
+    "date": "2026-07-16",
+    "description": "COSTCO WHSE",
+    "amount": -110.8,
+    "balance_after": 3146.91
+   },
+   {
+    "date": "2026-07-22",
+    "description": "BAPTIST HEALTH PAYROLL DEP",
+    "amount": 1911.08,
+    "balance_after": 5057.99
+   },
+   {
+    "date": "2026-07-23",
+    "description": "COSTCO WHSE",
+    "amount": -137.48,
+    "balance_after": 4920.51
+   },
+   {
+    "date": "2026-07-23",
+    "description": "AMC THEATRES",
+    "amount": -39.76,
+    "balance_after": 4880.75
+   },
+   {
+    "date": "2026-07-24",
+    "description": "CITI CARD PAYMENT",
+    "amount": -250,
+    "balance_after": 4630.75
+   },
+   {
+    "date": "2026-07-29",
+    "description": "CHIPOTLE 0442",
+    "amount": -41.74,
+    "balance_after": 4589.01
+   },
+   {
+    "date": "2026-08-01",
+    "description": "ZELLE TO R GOMEZ RENT",
+    "amount": -1250,
+    "balance_after": 3339.01
+   },
+   {
+    "date": "2026-08-02",
+    "description": "COSTCO WHSE",
+    "amount": -129.0,
+    "balance_after": 3210.01
+   },
+   {
+    "date": "2026-08-03",
+    "description": "TICKETMASTER",
+    "amount": -30.2,
+    "balance_after": 3179.81
+   },
+   {
+    "date": "2026-08-06",
+    "description": "DOORDASH*ORDER",
+    "amount": -34.49,
+    "balance_after": 3145.32
+   },
+   {
+    "date": "2026-08-07",
+    "description": "BAPTIST HEALTH PAYROLL DEP",
+    "amount": 1825.08,
+    "balance_after": 4970.4
+   },
+   {
+    "date": "2026-08-09",
+    "description": "ALDI 77",
+    "amount": -105.9,
+    "balance_after": 4864.5
+   },
+   {
+    "date": "2026-08-13",
+    "description": "FPL ELECTRIC AUTOPAY",
+    "amount": -136.44,
+    "balance_after": 4728.06
+   },
+   {
+    "date": "2026-08-15",
+    "description": "DOORDASH*ORDER",
+    "amount": -29.01,
+    "balance_after": 4699.05
+   },
+   {
+    "date": "2026-08-16",
+    "description": "T-MOBILE AUTOPAY",
+    "amount": -70,
+    "balance_after": 4629.05
+   },
+   {
+    "date": "2026-08-16",
+    "description": "ALDI 77",
+    "amount": -58.85,
+    "balance_after": 4570.2
+   },
+   {
+    "date": "2026-08-18",
+    "description": "AMAZON MKTPLACE",
+    "amount": -27.58,
+    "balance_after": 4542.62
+   },
+   {
+    "date": "2026-08-22",
+    "description": "BAPTIST HEALTH PAYROLL DEP",
+    "amount": 1825.08,
+    "balance_after": 6367.7
+   },
+   {
+    "date": "2026-08-23",
+    "description": "KROGER #1182",
+    "amount": -68.39,
+    "balance_after": 6299.31
+   },
+   {
+    "date": "2026-08-24",
+    "description": "CITI CARD PAYMENT",
+    "amount": -250,
+    "balance_after": 6049.31
+   },
+   {
+    "date": "2026-08-31",
+    "description": "AMAZON MKTPLACE",
+    "amount": -82.92,
+    "balance_after": 5966.39
+   },
+   {
+    "date": "2026-08-31",
+    "description": "CHIPOTLE 0442",
+    "amount": -25.56,
+    "balance_after": 5940.83
+   }
+  ]
+ }
+]
