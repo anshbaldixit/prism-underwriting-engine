@@ -45,7 +45,7 @@ prism:
     seed-password: ${PRISM_SEED_PASSWORD:}
     cors-origins: ${PRISM_CORS_ORIGINS:http://localhost:5173}
   ai:
-    # bedrock | anthropic | offline   (offline = deterministic template explainer, no network)
+    # bedrock | anthropic | openai-compatible | offline   (offline = deterministic template explainer, no network)
     provider: ${PRISM_AI_PROVIDER:offline}
     # bedrock | offline   (offline = hashed n-gram embeddings; same 1024 dimensions as Titan v2)
     embedding-provider: ${PRISM_EMBEDDING_PROVIDER:offline}
@@ -59,3 +59,10 @@ prism:
       guardrail-version: ${PRISM_BEDROCK_GUARDRAIL_VERSION:DRAFT}
     anthropic:
       model: ${PRISM_ANTHROPIC_MODEL:claude-opus-5}
+    # Any OpenAI-protocol endpoint. Defaults target Groq's free tier; point base-url at http://localhost:11434/v1
+    # with an empty api-key-env for a local Ollama. The key itself is never in config - only the variable name.
+    openai-compatible:
+      base-url: ${PRISM_OPENAI_BASE_URL:https://api.groq.com/openai/v1}
+      model: ${PRISM_OPENAI_MODEL:openai/gpt-oss-120b}
+      api-key-env: ${PRISM_OPENAI_API_KEY_ENV:GROQ_API_KEY}
+      reasoning-effort: ${PRISM_OPENAI_REASONING_EFFORT:low}

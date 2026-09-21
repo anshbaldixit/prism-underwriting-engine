@@ -56,4 +56,9 @@ public class BedrockConverseLlmClient implements LlmClient {
     public String providerName() {
         return "bedrock";
     }
+
+    @Override
+    public String modelName() {
+        return modelId;
+    }
 }

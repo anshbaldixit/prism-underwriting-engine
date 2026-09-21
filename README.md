@@ -22,7 +22,7 @@ Prism scores a credit application in about 100 ms from three modalities — bure
 - **Fairness harness on attributes that are never features.** Age adverse-impact ratio moves from 0.45 (bureau-only, fails the 4/5ths rule) to 0.96; the equal-opportunity gap falls from 34% to 3%.
 - **A fraud/verification gate that runs before pricing.** Behavioural and device signals can trigger step-up verification or a block but can never change a legitimate applicant's price. 99% block precision, 88% recall of any flag, 0.6% friction on legitimate applicants.
 - **Reg B-grade explainability.** Reasons are the largest additive contributions; a no-file applicant gets "no credit bureau file" rather than "score below threshold". The LLM's notice must restate exactly those codes or it is rejected and a deterministic template is issued instead.
-- **Provider-agnostic AI layer.** Amazon Bedrock (Claude via Converse, Titan Embeddings v2, Bedrock Guardrails), the Anthropic API, or a zero-credential offline mode — chosen by an environment variable, never in code.
+- **Provider-agnostic AI layer.** Any OpenAI-compatible endpoint (the demo runs on Groq's free tier with `gpt-oss-120b`; a local Ollama or an in-VPC vLLM is a base-URL change), Amazon Bedrock (Claude via Converse, Titan Embeddings v2, Bedrock Guardrails), the Anthropic API, or a zero-credential offline mode — chosen by an environment variable, never in code. Every provider goes through the same prompts, validator and audit trail.
 
 ## Run it locally
 
@@ -48,10 +48,11 @@ Full stack in containers instead: `docker compose --env-file .env -f infra/docke
 | Mode | Set | Needs |
 |---|---|---|
 | Offline (default) | `PRISM_AI_PROVIDER=offline`, `PRISM_EMBEDDING_PROVIDER=offline` | nothing |
+| OpenAI-compatible endpoint (Groq free tier, local Ollama/vLLM, any in-VPC model server) | `PRISM_AI_PROVIDER=openai-compatible`; `PRISM_OPENAI_BASE_URL`, `PRISM_OPENAI_MODEL`, `PRISM_OPENAI_API_KEY_ENV` (defaults: Groq, `openai/gpt-oss-120b`, `GROQ_API_KEY`) | the key named by `PRISM_OPENAI_API_KEY_ENV` (none for a local server) |
 | Amazon Bedrock | `PRISM_AI_PROVIDER=bedrock`, `PRISM_EMBEDDING_PROVIDER=bedrock`, `AWS_REGION`, optional `PRISM_BEDROCK_GUARDRAIL_ID` | AWS credentials via `aws configure` / role; model access enabled for Claude and Titan Embeddings v2 in the region |
 | Anthropic API | `PRISM_AI_PROVIDER=anthropic` | `ANTHROPIC_API_KEY` |
 
-The decision page shows which provider produced each notice and whether it passed validation or fell back to the template. See [`infra/aws/README.md`](infra/aws/README.md) for the Bedrock set-up (fits inside the AWS free plan's credits).
+The decision page shows which provider and model produced each notice and whether it passed validation or fell back to the template. See [`infra/aws/README.md`](infra/aws/README.md) for the Bedrock set-up. The copilot always carries the *Prohibited bases* and *Roles of each component* policy sections in its context, and may name a protected characteristic only while citing that policy (e.g. to refuse an override "because the applicant is young").
 
 ### Tests
 

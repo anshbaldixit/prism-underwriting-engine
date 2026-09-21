@@ -14,6 +14,7 @@ import dev.anshdixit.prism.ai.bedrock.BedrockGuardrail;
 import dev.anshdixit.prism.ai.bedrock.TitanEmbeddingClient;
 import dev.anshdixit.prism.ai.offline.HashingEmbeddingClient;
 import dev.anshdixit.prism.ai.offline.OfflineTemplateLlmClient;
+import dev.anshdixit.prism.ai.openai.OpenAiCompatibleLlmClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
@@ -28,6 +29,7 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 import tools.jackson.databind.json.JsonMapper;
 
+import java.net.http.HttpClient;
 import java.time.Duration;
 
 /**
@@ -59,16 +61,26 @@ public class AiConfig {
 
     @Bean
     @Primary
-    public LlmClient primaryLlmClient(PrismProperties props, ObjectProvider<BedrockRuntimeClient> bedrock, @Qualifier("fallbackLlmClient") LlmClient fallbackLlmClient) {
+    public LlmClient primaryLlmClient(PrismProperties props, ObjectProvider<BedrockRuntimeClient> bedrock, @Qualifier("fallbackLlmClient") LlmClient fallbackLlmClient, JsonMapper apiJsonMapper) {
         String provider = props.ai().provider();
         LlmClient client = switch (provider) {
             case "bedrock" -> new BedrockConverseLlmClient(bedrock.getObject(), props.ai().bedrock().modelId());
             case "anthropic" -> new AnthropicLlmClient(AnthropicOkHttpClient.fromEnv(), props.ai().anthropic().model());
+            case "openai-compatible" -> openAiCompatible(props, apiJsonMapper);
             default -> fallbackLlmClient;
         };
-        log.info("AI provider: {} (model {})", client.providerName(),
-                switch (provider) { case "bedrock" -> props.ai().bedrock().modelId(); case "anthropic" -> props.ai().anthropic().model(); default -> "template"; });
+        log.info("AI provider: {} (model {})", client.providerName(), client.modelName() == null ? "template" : client.modelName());
         return client;
+    }
+
+    private static LlmClient openAiCompatible(PrismProperties props, JsonMapper mapper) {
+        PrismProperties.OpenAiCompatible cfg = props.ai().openaiCompatible();
+        String key = cfg.apiKeyEnv() == null || cfg.apiKeyEnv().isBlank() ? null : System.getenv(cfg.apiKeyEnv());
+        if (cfg.apiKeyEnv() != null && !cfg.apiKeyEnv().isBlank() && (key == null || key.isBlank())) {
+            throw new IllegalStateException("PRISM_AI_PROVIDER=openai-compatible but environment variable " + cfg.apiKeyEnv() + " is not set");
+        }
+        HttpClient http = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
+        return new OpenAiCompatibleLlmClient(http, mapper, cfg.baseUrl(), cfg.model(), key, cfg.reasoningEffort(), Duration.ofSeconds(props.ai().timeoutSeconds()));
     }
 
     @Bean

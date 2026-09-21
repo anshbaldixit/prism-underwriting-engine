@@ -44,4 +44,9 @@ public class AnthropicLlmClient implements LlmClient {
     public String providerName() {
         return "anthropic";
     }
+
+    @Override
+    public String modelName() {
+        return model;
+    }
 }

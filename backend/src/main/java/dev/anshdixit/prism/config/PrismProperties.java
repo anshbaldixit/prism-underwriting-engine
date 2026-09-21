@@ -25,12 +25,18 @@ public record PrismProperties(Security security, Ai ai) {
     }
 
     public record Ai(
-            @Pattern(regexp = "bedrock|anthropic|offline") String provider,
+            @Pattern(regexp = "bedrock|anthropic|openai-compatible|offline") String provider,
             @Pattern(regexp = "bedrock|offline") String embeddingProvider,
             @Min(200) int maxOutputTokens,
             @Min(5) int timeoutSeconds,
             Bedrock bedrock,
-            Anthropic anthropic) {
+            Anthropic anthropic,
+            OpenAiCompatible openaiCompatible) {
+    }
+
+    /** Any OpenAI-protocol endpoint: Groq, a local Ollama/vLLM, or a model server inside a VPC. The key is read from
+     *  the environment variable named by {@code apiKeyEnv} (empty for local servers that need none). */
+    public record OpenAiCompatible(String baseUrl, String model, String apiKeyEnv, String reasoningEffort) {
     }
 
     public record Bedrock(String region, String modelId, String embeddingModelId, String guardrailId, String guardrailVersion) {
