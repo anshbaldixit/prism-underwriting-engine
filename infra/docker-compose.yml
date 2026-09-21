@@ -1,0 +1,58 @@
+# Prism local stack. Copy .env.example to .env at the repo root first (secrets are never defaulted here).
+#   docker compose --env-file ../.env -f infra/docker-compose.yml up -d db        # database only (dev)
+#   docker compose --env-file ../.env -f infra/docker-compose.yml up --build      # full stack
+name: prism
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: prism-db
+    environment:
+      POSTGRES_DB: prism
+      POSTGRES_USER: prism
+      POSTGRES_PASSWORD: ${PRISM_DB_PASSWORD:?set PRISM_DB_PASSWORD in .env}
+    ports:
+      - "5432:5432"
+    volumes:
+      - prism-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U prism -d prism"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build: ../backend
+    container_name: prism-backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PRISM_DB_URL: jdbc:postgresql://db:5432/prism
+      PRISM_DB_USER: prism
+      PRISM_DB_PASSWORD: ${PRISM_DB_PASSWORD}
+      PRISM_JWT_SECRET: ${PRISM_JWT_SECRET:?set PRISM_JWT_SECRET (>=32 chars) in .env}
+      PRISM_SEED_PASSWORD: ${PRISM_SEED_PASSWORD:-}
+      PRISM_CORS_ORIGINS: http://localhost:5173,http://localhost:8081
+      PRISM_AI_PROVIDER: ${PRISM_AI_PROVIDER:-offline}
+      PRISM_EMBEDDING_PROVIDER: ${PRISM_EMBEDDING_PROVIDER:-offline}
+      PRISM_BEDROCK_MODEL_ID: ${PRISM_BEDROCK_MODEL_ID:-us.anthropic.claude-haiku-4-5-20251001-v1:0}
+      PRISM_BEDROCK_GUARDRAIL_ID: ${PRISM_BEDROCK_GUARDRAIL_ID:-}
+      PRISM_BEDROCK_GUARDRAIL_VERSION: ${PRISM_BEDROCK_GUARDRAIL_VERSION:-DRAFT}
+      AWS_REGION: ${AWS_REGION:-us-east-1}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+      AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ../frontend
+    container_name: prism-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8081:80"
+
+volumes:
+  prism-pgdata:
