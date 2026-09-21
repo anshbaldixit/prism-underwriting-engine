@@ -2,7 +2,6 @@ package dev.anshdixit.prism.ai;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 import tools.jackson.databind.JsonNode;
 
 import java.nio.charset.StandardCharsets;
@@ -28,7 +27,6 @@ import java.util.concurrent.TimeoutException;
  * </ol>
  * The contract to callers is simple: you always get a validated JSON document of the task's schema.
  */
-@Service
 public class GuardrailService {
 
     private static final Logger log = LoggerFactory.getLogger(GuardrailService.class);

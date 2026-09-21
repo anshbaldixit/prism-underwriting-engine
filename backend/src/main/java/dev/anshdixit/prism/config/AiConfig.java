@@ -17,6 +17,8 @@ import dev.anshdixit.prism.ai.offline.OfflineTemplateLlmClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -39,11 +41,8 @@ public class AiConfig {
     private static final Logger log = LoggerFactory.getLogger(AiConfig.class);
 
     @Bean
+    @ConditionalOnExpression("'${prism.ai.provider}' == 'bedrock' or '${prism.ai.embedding-provider}' == 'bedrock'")
     public BedrockRuntimeClient bedrockRuntimeClient(PrismProperties props) {
-        boolean needed = "bedrock".equals(props.ai().provider()) || "bedrock".equals(props.ai().embeddingProvider());
-        if (!needed) {
-            return null;
-        }
         return BedrockRuntimeClient.builder()
                 .region(Region.of(props.ai().bedrock().region()))
                 .credentialsProvider(DefaultCredentialsProvider.builder().build())
@@ -60,7 +59,7 @@ public class AiConfig {
 
     @Bean
     @Primary
-    public LlmClient primaryLlmClient(PrismProperties props, ObjectProvider<BedrockRuntimeClient> bedrock, LlmClient fallbackLlmClient) {
+    public LlmClient primaryLlmClient(PrismProperties props, ObjectProvider<BedrockRuntimeClient> bedrock, @Qualifier("fallbackLlmClient") LlmClient fallbackLlmClient) {
         String provider = props.ai().provider();
         LlmClient client = switch (provider) {
             case "bedrock" -> new BedrockConverseLlmClient(bedrock.getObject(), props.ai().bedrock().modelId());
@@ -91,7 +90,7 @@ public class AiConfig {
     }
 
     @Bean
-    public GuardrailService guardrailService(LlmClient primaryLlmClient, LlmClient fallbackLlmClient, TextGuardrail managedGuardrail,
+    public GuardrailService guardrailService(@Qualifier("primaryLlmClient") LlmClient primaryLlmClient, @Qualifier("fallbackLlmClient") LlmClient fallbackLlmClient, TextGuardrail managedGuardrail,
                                              LlmOutputValidator validator, PiiRedactor redactor, AiInvocationRepository audit, PrismProperties props) {
         return new GuardrailService(primaryLlmClient, fallbackLlmClient, managedGuardrail, validator, redactor, audit, props.ai().timeoutSeconds());
     }
