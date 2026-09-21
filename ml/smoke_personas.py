@@ -36,7 +36,7 @@ def main():
             "loan": {"requestedAmount": f["requestedAmount"], "purpose": f["loanPurpose"]},
             "consent": {"bankData": f["consentBankData"], "altData": f["consentAltData"]},
             "bureau": p["bureau"],
-            "behaviour": p["behaviour"],
+            "behaviour": {**p["behaviour"], "deviceId": f"{p['behaviour']['deviceId']}-{os.urandom(3).hex()}"},
             "transactions": [{"date": t["date"], "description": t["description"], "amount": t["amount"], "balanceAfter": t["balance_after"]} for t in p["transactions"]],
             "personaId": p["id"],
         }
