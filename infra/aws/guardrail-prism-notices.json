@@ -1,0 +1,49 @@
+{
+  "name": "prism-consumer-notices",
+  "description": "Guardrail applied to every prompt and completion in the Prism underwriting engine (ApplyGuardrail, both INPUT and OUTPUT).",
+  "blockedInputMessaging": "The request could not be processed by the language model. A deterministic notice was issued instead.",
+  "blockedOutputsMessaging": "The generated text did not pass policy checks. A deterministic notice was issued instead.",
+  "topicPolicyConfig": {
+    "topicsConfig": [
+      {
+        "name": "ProtectedCharacteristics",
+        "definition": "Any reference to an applicant's age, sex, gender, race, colour, religion, national origin, marital status, disability or receipt of public assistance as a factor in a credit decision.",
+        "examples": ["Applicants of your age are usually declined", "As a single mother you may not qualify"],
+        "type": "DENY"
+      },
+      {
+        "name": "FinancialAdviceOrPromises",
+        "definition": "Promises or predictions of future approval, or personalised legal or investment advice.",
+        "examples": ["You will definitely be approved next month", "You should take out a payday loan instead"],
+        "type": "DENY"
+      }
+    ]
+  },
+  "contentPolicyConfig": {
+    "filtersConfig": [
+      { "type": "HATE", "inputStrength": "HIGH", "outputStrength": "HIGH" },
+      { "type": "INSULTS", "inputStrength": "HIGH", "outputStrength": "HIGH" },
+      { "type": "SEXUAL", "inputStrength": "HIGH", "outputStrength": "HIGH" },
+      { "type": "VIOLENCE", "inputStrength": "HIGH", "outputStrength": "HIGH" },
+      { "type": "MISCONDUCT", "inputStrength": "HIGH", "outputStrength": "HIGH" },
+      { "type": "PROMPT_ATTACK", "inputStrength": "HIGH", "outputStrength": "NONE" }
+    ]
+  },
+  "sensitiveInformationPolicyConfig": {
+    "piiEntitiesConfig": [
+      { "type": "US_SOCIAL_SECURITY_NUMBER", "action": "BLOCK" },
+      { "type": "CREDIT_DEBIT_CARD_NUMBER", "action": "BLOCK" },
+      { "type": "US_BANK_ACCOUNT_NUMBER", "action": "BLOCK" },
+      { "type": "EMAIL", "action": "ANONYMIZE" },
+      { "type": "PHONE", "action": "ANONYMIZE" },
+      { "type": "NAME", "action": "ANONYMIZE" },
+      { "type": "ADDRESS", "action": "ANONYMIZE" }
+    ]
+  },
+  "contextualGroundingPolicyConfig": {
+    "filtersConfig": [
+      { "type": "GROUNDING", "threshold": 0.7 },
+      { "type": "RELEVANCE", "threshold": 0.7 }
+    ]
+  }
+}
