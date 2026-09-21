@@ -1,0 +1,12 @@
+.env
+*.log
+node_modules/
+dist/
+target/
+ml/data/
+ml/__pycache__/
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
