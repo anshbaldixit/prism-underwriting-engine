@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from 'react'
 import { configureApi, post } from '../api/client'
 import type { Session } from '../api/types'
 
@@ -24,6 +24,8 @@ function load(): Session | null {
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(load)
+  const sessionRef = useRef(session)
+  sessionRef.current = session
 
   const logout = useCallback(() => {
     setSession(null)
@@ -34,9 +36,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  useEffect(() => {
-    configureApi(() => session?.token ?? null, logout)
-  }, [session, logout])
+  // Wired synchronously during render (not in an effect): child pages fetch in their own effects, which run
+  // before a parent's effects would, so the token provider must already be in place by then.
+  configureApi(() => sessionRef.current?.token ?? null, logout)
 
   const login = useCallback(async (username: string, password: string) => {
     const s = await post<Session>('/api/auth/login', { username, password })
