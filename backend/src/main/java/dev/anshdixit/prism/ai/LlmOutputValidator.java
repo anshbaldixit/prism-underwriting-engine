@@ -71,7 +71,7 @@ public class LlmOutputValidator {
         requireEquals(json, "decision", (String) ctx.get("decision"), errors);
         requireText(json, "summary", 700, errors);
         requireText(json, "disclaimer", 400, errors);
-        Set<String> allowed = allowedCodes(ctx);
+        Set<String> allowed = codesIn(ctx, "reasons");  // the notice must carry exactly the principal reasons
         JsonNode reasons = json.get("principal_reasons");
         if (reasons == null || !reasons.isArray()) {
             errors.add("principal_reasons missing");
@@ -104,7 +104,8 @@ public class LlmOutputValidator {
         if (!Set.of("APPROVE", "DECLINE", "REFER", "REQUEST_DOCS").contains(rec)) {
             errors.add("Invalid recommendation: " + rec);
         }
-        Set<String> allowed = allowedCodes(ctx);
+        Set<String> allowed = codesIn(ctx, "reasons");
+        allowed.addAll(codesIn(ctx, "strengths"));  // a summary may cite supporting factors as well
         JsonNode cited = json.get("cited_factors");
         if (cited != null && cited.isArray()) {
             for (JsonNode c : cited) {
@@ -145,15 +146,12 @@ public class LlmOutputValidator {
     }
 
     @SuppressWarnings("unchecked")
-    private static Set<String> allowedCodes(Map<String, Object> ctx) {
-        Set<String> allowed = new HashSet<>();
-        for (Map<String, Object> r : (List<Map<String, Object>>) ctx.getOrDefault("reasons", List.of())) {
-            allowed.add((String) r.get("code"));
+    private static Set<String> codesIn(Map<String, Object> ctx, String key) {
+        Set<String> codes = new HashSet<>();
+        for (Map<String, Object> r : (List<Map<String, Object>>) ctx.getOrDefault(key, List.of())) {
+            codes.add((String) r.get("code"));
         }
-        for (Map<String, Object> r : (List<Map<String, Object>>) ctx.getOrDefault("strengths", List.of())) {
-            allowed.add((String) r.get("code"));
-        }
-        return allowed;
+        return codes;
     }
 
     private static void requireText(JsonNode json, String field, int maxLen, List<String> errors) {
