@@ -57,11 +57,14 @@ The decision page shows which provider and model produced each notice and whethe
 ### Tests
 
 ```bash
-cd backend && ./mvnw test        # 34 unit tests + a Testcontainers end-to-end flow (skipped automatically without Docker)
-cd frontend && npx tsc -p tsconfig.app.json --noEmit && npm run build
+cd backend && ./mvnw test        # 43 tests: 39 unit + a Testcontainers end-to-end flow (skipped automatically without Docker)
+cd frontend && npm test          # 12 Vitest tests (API client, provenance labels, decision components)
+cd frontend && npm run build     # type-check + production bundle
 ```
 
-Notable tests: `ScorecardEngineTest` proves the Java engine reproduces the Python export's score, PD and reason codes on 300 hold-out rows; `LlmOutputValidatorTest` proves a hallucinated or omitted reason code is rejected; `ApplicationFlowTest` runs login → submit → decision → underwriter summary → copilot against a real pgvector database.
+Notable tests: `ScorecardEngineTest` proves the Java engine reproduces the Python export's score, PD and reason codes on 300 hold-out rows; `LlmOutputValidatorTest` proves a hallucinated or omitted reason code is rejected and that a copilot answer may name a protected characteristic only while citing the prohibited-bases policy; `OpenAiCompatibleLlmClientTest` drives the LLM adapter against an in-process stub; `ApplicationFlowTest` runs login → submit → decision → underwriter summary → copilot → override against a real pgvector database.
+
+CI (`.github/workflows/ci.yml`) runs all of the above on every push, plus an ML job that regenerates the data, retrains, and fails if the exported scorecard, fraud rules, personas or hold-out sample differ from the committed ones — the pipeline is deterministic by construction.
 
 ### Retrain the model
 
