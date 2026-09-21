@@ -11,6 +11,9 @@ const card = JSON.parse(fs.readFileSync(`${ROOT}/backend/src/main/resources/mode
 const scorecard = JSON.parse(fs.readFileSync(`${ROOT}/backend/src/main/resources/model/scorecard.json`, 'utf8'))
 const FIG = `${ROOT}/docs/figures`
 const SHOT = `${ROOT}/docs/screenshots/crops`
+const REPO = 'github.com/anshbaldixit/prism-underwriting-engine'
+const ROLL = process.env.PRISM_ROLL || ''            // set for a submission export; the committed deck stays neutral
+const OUT = process.env.PRISM_DECK_OUT || `${ROOT}/docs/Prism_Underwriting_Engine.pptx`
 
 // Palette: deep navy dominant on the bookends, white content slides, one accent (Prism blue) plus the
 // chart series colours (orange = bureau-only, aqua = GBM) reused exactly as in the figures.
@@ -80,7 +83,7 @@ function chartFrame(extra = {}) {
   s.addText('Prism', { x: 0.6, y: 1.9, w: 8.8, h: 0.9, fontSize: 54, bold: true, color: C.white, fontFace: FONT, isTextBox: true, margin: 0 })
   s.addText('A real-time, multi-modal underwriting engine for new-to-credit and thin-file customers', { x: 0.6, y: 2.8, w: 8.6, h: 0.8, fontSize: 20, color: 'CADCFC', fontFace: FONT, isTextBox: true, margin: 0 })
   s.addText('Cash-flow and behavioural signals · an interpretable scorecard · exact reason codes · guardrailed AI explanations', { x: 0.6, y: 3.75, w: 8.6, h: 0.35, fontSize: 12, color: '8FA6D0', fontFace: FONT, italic: true, isTextBox: true, margin: 0 })
-  s.addText('Ansh Dixit · September 2026', { x: 0.6, y: 4.75, w: 8.6, h: 0.35, fontSize: 12, color: 'CADCFC', fontFace: FONT, isTextBox: true, margin: 0 })
+  s.addText(`Ansh Dixit${ROLL ? ' · ' + ROLL : ''} · September 2026 · ${REPO}`, { x: 0.6, y: 4.75, w: 8.6, h: 0.35, fontSize: 12, color: 'CADCFC', fontFace: FONT, isTextBox: true, margin: 0 })
 }
 
 // ------------------------------------------------------------------ 2. The problem
@@ -252,7 +255,7 @@ function chartFrame(extra = {}) {
 {
   const s = base()
   title(s, 'AI layer - one guarded path to any model', 'Provider is an environment variable. Prompts are versioned files. Every call is validated and audited.')
-  const steps = [['PII redaction', 'ids, emails, phones, cards masked before anything leaves'], ['Managed guardrail', 'Bedrock ApplyGuardrail on input & output (PII, denied topics, prompt attacks)'], ['Model call', 'Bedrock Converse · Anthropic API · offline template, with a hard timeout'],
+  const steps = [['PII redaction', 'ids, emails, phones, cards masked before anything leaves'], ['Managed guardrail', 'Bedrock ApplyGuardrail on input & output (PII, denied topics, prompt attacks)'], ['Model call', 'Groq / any OpenAI-compatible · Bedrock Converse · Anthropic · offline, hard timeout'],
     ['Output validator', 'JSON schema · reason codes ⊆ model\'s · decision restated · no protected-class terms'], ['Retry then fallback', 'one corrective retry, then the deterministic template'], ['Audit row', 'provider, model, latency, tokens, validation, fallback, prompt hash']]
   steps.forEach(([h, t], i) => {
     const x = 0.5 + i * 1.52
@@ -263,7 +266,7 @@ function chartFrame(extra = {}) {
   })
   card_(s, 0.5, 3.1, 2.9, 2.05)
   para(s, 'Providers', 0.7, 3.2, 2.6, 0.3, 12, C.ink, { bold: true })
-  bullets(s, ['Amazon Bedrock: Claude via Converse, Titan Text Embeddings v2 (1024-d), Bedrock Guardrails', 'Anthropic API: same prompts, validator, audit', 'Offline: template engine + hashed n-gram embeddings - zero credentials'], 0.7, 3.5, 2.6, 1.6, 9.5)
+  bullets(s, ['Any OpenAI-compatible endpoint - the demo runs on the Groq free tier (gpt-oss-120b); a local Ollama or in-VPC vLLM is a base-URL change', 'Amazon Bedrock: Converse, Titan Embeddings v2, Guardrails - wired, not exercised (no AWS account available)', 'Anthropic API adapter; offline template + hashed embeddings need no credentials'], 0.7, 3.5, 2.6, 1.6, 9)
   card_(s, 3.55, 3.1, 2.9, 2.05)
   para(s, 'Three closed tasks', 3.75, 3.2, 2.6, 0.3, 12, C.ink, { bold: true })
   bullets(s, ['ADVERSE_ACTION_NOTICE - plain-language, Reg B wording', 'UNDERWRITER_SUMMARY - strengths / risks citing factor codes', 'COPILOT_ANSWER - retrieval-orchestrated, cites only retrieved policy sections'], 3.75, 3.5, 2.6, 1.6, 9.5)
@@ -319,10 +322,10 @@ function chartFrame(extra = {}) {
   const s = base()
   title(s, 'The prototype, end to end', 'Six synthetic personas exercise every path: approve, refer, decline, step-up, block, and the no-file inclusion path')
   const shots = [['u-apply.png', 'Apply - persona loader, consent, simulated bureau pull and bank feed, live behavioural capture'],
-    ['u-decision-ntc.png', 'Decision - Priya (no file, gig income) approved in ~100 ms; reason R19 = "no bureau file", not "low score"'],
+    ['u-decision-ntc.png', 'Decision - Priya (no file, gig income) approved in ~100 ms; notice written by gpt-oss-120b via Groq and validated; reason R19 = "no bureau file"'],
     ['u-decision-block.png', 'Block - a synthetic identity with a spotless statement is stopped before pricing'],
     ['u-queue.png', 'Queue - underwriter view with decision, gate outcome, score and PD per case'],
-    ['u-underwriter.png', 'Underwriter - AI summary on demand, override with a logged reason, copilot with policy citations'],
+    ['u-underwriter.png', 'Underwriter - AI summary, logged override, copilot that cites policy and refuses a decline "because the applicant is young"'],
     ['u-model.png', 'Model & fairness - performance by segment, policy simulation, AIR by group, live monitoring']]
   shots.forEach(([f, cap], i) => {
     const col = i % 3, row = Math.floor(i / 3)
@@ -344,7 +347,7 @@ function chartFrame(extra = {}) {
     { text: 'for (Feature f : scorecard.features()) {', options: { breakLine: true } },
     { text: '  Double v = features.get(f.name());', options: { breakLine: true } },
     { text: '  boolean missing = v == null || v.isNaN();', options: { breakLine: true } },
-    { text: '  double woe = f.woeFor(v);   // missing bin, not imputed', options: { breakLine: true } },
+    { text: '  double woe = f.woeFor(v);   // missing bin', options: { breakLine: true } },
     { text: '  double c = f.coefficient() * woe;', options: { breakLine: true } },
     { text: '  logit += c;', options: { breakLine: true } },
     { text: '  contributions.add(new FeatureContribution(', options: { breakLine: true } },
@@ -352,7 +355,7 @@ function chartFrame(extra = {}) {
     { text: '      missing ? null : v, missing, woe, c));', options: { breakLine: true } },
     { text: '}', options: { breakLine: true } },
     { text: 'double pd = 1 / (1 + Math.exp(-logit));', options: { breakLine: true } },
-    { text: 'int score = toScore(logit);  // 600 = 30:1 odds, PDO 20', options: { breakLine: true } },
+    { text: 'int score = toScore(logit);  // 600 = 30:1 odds', options: { breakLine: true } },
     { text: 'return new ScoreResult(..., principalReasons(contribs));', options: { breakLine: true } },
     { text: '', options: { breakLine: true } },
     { text: '// principalReasons: aggregate c > 0 by reason code,', options: { color: '6A9955', breakLine: true } },
@@ -365,9 +368,9 @@ function chartFrame(extra = {}) {
   para(s, 'Records for immutable values, constructor injection, no Lombok, interfaces at every provider boundary (LlmClient, EmbeddingClient, TextGuardrail, TransactionCategorizer).', 5.3, 2.4, 4.0, 0.7, 10, C.muted)
   card_(s, 5.1, 3.3, 4.4, 1.85, { fill: C.tintAqua, line: C.tintAqua })
   para(s, 'Tests', 5.3, 3.4, 4, 0.3, 12, C.ink, { bold: true })
-  bullets(s, ['34 unit tests: engine, policy, fraud gate, cash-flow arithmetic, validator, redaction, offline template',
+  bullets(s, ['43 backend tests + 12 frontend tests: engine, policy, fraud gate, cash-flow arithmetic, validator, redaction, LLM adapter, UI components',
     'Parity: Java reproduces Python\'s score, PD and reason codes on 300 hold-out rows',
-    'Testcontainers flow on real pgvector: login → submit → decision → summary → copilot → action; role denials'], 5.3, 3.7, 4.0, 1.4, 9.5)
+    'Testcontainers flow on real pgvector: login → submit → decision → summary → copilot → action; CI runs all of it plus an ML reproducibility check'], 5.3, 3.7, 4.0, 1.4, 9.5)
 }
 
 // ------------------------------------------------------------------ 16. Engineering practices
@@ -375,10 +378,10 @@ function chartFrame(extra = {}) {
   const s = base()
   title(s, 'Engineering practices', 'What a reviewer can verify in the repository')
   const items = [['API-first', 'docs/api/openapi.yaml; every endpoint validated and role-guarded; RFC 9457 errors'],
-    ['Version control', 'Git history with milestone commits; .gitattributes, .gitignore, .env.example - the secret file is never committed'],
+    ['Version control', '60+ scoped commits on GitHub with CI on every push; .gitattributes, .gitignore, .env.example - the secret file is never committed'],
     ['README & run', 'One env file, docker compose for pgvector, mvnw and npm scripts; full stack also runs as containers'],
     ['Architecture diagram', 'docs/architecture.svg (source) + PNG; deployment topology in infra/aws'],
-    ['Testing', 'Unit + parity + Testcontainers integration; TypeScript strict build; Playwright walkthrough for screenshots'],
+    ['Testing', '43 backend + 12 frontend tests, Python-parity and Testcontainers integration; GitHub Actions runs them and re-derives the model artefacts'],
     ['Credentials', 'Environment only; start-up fails fast without a 32-char JWT secret; AWS via IAM roles; Secrets Manager in deployment'],
     ['Configuration', 'Typed @ConfigurationProperties with validation; provider swaps are one variable'],
     ['Reproducibility', 'Seeded synthetic data, exported artefacts versioned with the service, model version on every decision row']]
@@ -409,7 +412,7 @@ function chartFrame(extra = {}) {
     'Bureau pull and bank connection are simulated behind adapter interfaces',
     'Fairness tested on three proxies; production needs BISG-style analysis and ongoing monitoring',
     'The scorecard is linear in WoE space; interactions are not modelled (the GBM benchmark measures the cost)',
-    'The offline mode is a template renderer, not a language model - the live path needs Bedrock or an API key',
+    'The Bedrock adapter is complete but unexercised (no AWS account); the live demo runs on the Groq free tier through the same validator',
     'Cash-flow features need consented bank linking; unlinked applicants are referred, which adds friction'], 5.35, 1.8, 4.0, 3.3, 10)
 }
 
@@ -430,9 +433,8 @@ function chartFrame(extra = {}) {
     s.addText(t, { x: x + 0.15, y: 3.55, w: 1.8, h: 0.5, fontSize: 10, color: '8FA6D0', fontFace: FONT, isTextBox: true, margin: 0 })
   })
   s.addText('Next: server-side bureau and open-banking adapters · customer IdP · model registry with the card attached · BISG fairness monitoring · Bedrock in production with the managed guardrail', { x: 0.6, y: 4.3, w: 8.8, h: 0.5, fontSize: 11, color: 'CADCFC', fontFace: FONT, isTextBox: true, margin: 0 })
-  s.addText('Repository: README with setup, tests and deployment · Ansh Dixit · anshbaldixit@gmail.com', { x: 0.6, y: 4.95, w: 8.8, h: 0.3, fontSize: 11, color: '8FA6D0', fontFace: FONT, isTextBox: true, margin: 0 })
+  s.addText(`${REPO} - README with setup, tests and deployment · Ansh Dixit${ROLL ? ' · ' + ROLL : ''} · anshbaldixit@gmail.com`, { x: 0.6, y: 4.95, w: 8.8, h: 0.3, fontSize: 11, color: '8FA6D0', fontFace: FONT, isTextBox: true, margin: 0 })
 }
 
-const out = `${ROOT}/docs/Prism_Underwriting_Engine.pptx`
-await pres.writeFile({ fileName: out })
-console.log('wrote', out, 'slides:', slideNo)
+await pres.writeFile({ fileName: OUT })
+console.log('wrote', OUT, 'slides:', slideNo, ROLL ? '(submission export)' : '(neutral)')

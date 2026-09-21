@@ -1,5 +1,7 @@
 # Prism — Real-Time, Multi-Modal Underwriting Engine
 
+[![ci](https://github.com/anshbaldixit/prism-underwriting-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/anshbaldixit/prism-underwriting-engine/actions/workflows/ci.yml) · `github.com/anshbaldixit/prism-underwriting-engine`
+
 **Goal:** a real-time, multi-modal underwriting engine that expands credit access to New-to-Credit (NTC) and thin-file customers using alternative data and real-time behavioural signals — while catching fraud before pricing and keeping every decision explainable to a regulator.
 
 Prism scores a credit application in about 100 ms from three modalities — bureau data (when it exists), consented bank cash-flow data, and behavioural signals captured while the form is filled in — then explains the decision with **exact, additive reason codes** and a **guardrailed, LLM-rendered notice** that is validated against the model's own factors before a customer can see it.
