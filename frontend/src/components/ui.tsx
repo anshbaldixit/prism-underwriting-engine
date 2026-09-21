@@ -87,11 +87,21 @@ export function ContributionBars({ contributions, limit = 12 }: { contributions:
   )
 }
 
+/** Human label for a provenance string of the form "provider · model". */
+export function providerLabel(provider: string | null | undefined): { name: string; model: string | null } {
+  if (!provider) return { name: 'n/a', model: null }
+  const [p, ...rest] = provider.split(' · ')
+  const model = rest.length ? rest.join(' · ') : null
+  const name = p === 'bedrock' ? 'Amazon Bedrock' : p === 'anthropic' ? 'Anthropic API' : p === 'groq' ? 'Groq' : p === 'ollama' ? 'Ollama (local)'
+    : p === 'openai-compatible' ? 'OpenAI-compatible endpoint' : p.startsWith('offline') ? 'Offline template' : p
+  return { name, model }
+}
+
 export function ProviderTag({ provider, validated, fallback }: { provider: string | null; validated: boolean | null; fallback: boolean | null }) {
-  const label = provider === 'bedrock' ? 'Amazon Bedrock' : provider === 'anthropic' ? 'Anthropic API' : provider ? 'Offline template' : 'n/a'
+  const { name, model } = providerLabel(provider)
   return (
     <span className="row" style={{ gap: 6 }}>
-      <span className="badge neutral">{label}</span>
+      <span className="badge neutral">{name}{model ? <span className="tiny mono" style={{ fontWeight: 400 }}> {model}</span> : null}</span>
       {validated ? <span className="badge approve">validated against model factors</span> : <span className="badge decline">validation failed</span>}
       {fallback ? <span className="badge refer">fallback used</span> : null}
     </span>

@@ -51,6 +51,10 @@ public class GuardrailService {
     }
 
     public record Guarded(JsonNode json, String provider, String model, boolean validated, boolean fallbackUsed, String guardrailAction, long latencyMs) {
+        /** "provider · model" for provenance badges; the template engine has no model worth naming. */
+        public String label() {
+            return model == null || model.isBlank() || provider.startsWith("offline") ? provider : provider + " · " + model;
+        }
     }
 
     public Guarded generate(LlmRequest request, UUID applicationId) {
@@ -156,7 +160,12 @@ public class GuardrailService {
     }
 
     public Map<String, Object> describe() {
-        return Map.of("primaryProvider", primary.providerName(), "fallbackProvider", fallback.providerName(),
-                "managedGuardrail", managedGuardrail != TextGuardrail.NONE, "timeoutSeconds", timeoutSeconds);
+        Map<String, Object> m = new java.util.LinkedHashMap<>();
+        m.put("primaryProvider", primary.providerName());
+        m.put("primaryModel", primary.modelName() == null ? "template" : primary.modelName());
+        m.put("fallbackProvider", fallback.providerName());
+        m.put("managedGuardrail", managedGuardrail != TextGuardrail.NONE);
+        m.put("timeoutSeconds", timeoutSeconds);
+        return m;
     }
 }

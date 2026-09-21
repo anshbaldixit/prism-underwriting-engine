@@ -84,7 +84,7 @@ public class Decision {
     @Column(columnDefinition = "text")
     private String noticeJson;
 
-    @Column(length = 40)
+    @Column(length = 120)
     private String noticeProvider;
 
     private Boolean noticeValidated;
@@ -94,7 +94,7 @@ public class Decision {
     @Column(columnDefinition = "text")
     private String summaryJson;
 
-    @Column(length = 40)
+    @Column(length = 120)
     private String summaryProvider;
 
     @Column(nullable = false)

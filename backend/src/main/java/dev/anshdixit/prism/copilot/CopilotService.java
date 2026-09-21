@@ -40,11 +40,21 @@ public class CopilotService {
         this.maxTokens = props.ai().maxOutputTokens();
     }
 
-    public record Answer(JsonNode answer, String provider, boolean fallbackUsed, List<PolicySearchService.Chunk> retrieved, long latencyMs) {
+    public record Answer(JsonNode answer, String provider, String model, boolean fallbackUsed, List<PolicySearchService.Chunk> retrieved, long latencyMs) {
     }
 
+    /** Sections every underwriting question must be answered against, whatever the vector search returns. */
+    private static final List<String[]> PINNED_SECTIONS = List.of(
+            new String[]{"credit-policy", "Prohibited bases"},
+            new String[]{"responsible-ai", "Roles of each component"});
+
     public Answer ask(UUID applicationId, String question) {
-        List<PolicySearchService.Chunk> chunks = policy.search(question, 4);
+        List<PolicySearchService.Chunk> chunks = new ArrayList<>(policy.search(question, 8));
+        for (String[] pinned : PINNED_SECTIONS) {
+            if (chunks.stream().noneMatch(c -> c.doc().equals(pinned[0]) && c.section().equals(pinned[1]))) {
+                policy.section(pinned[0], pinned[1]).ifPresent(chunks::add);
+            }
+        }
         String appSummary = "no application selected";
         String cohort = "not available";
         if (applicationId != null) {
@@ -76,7 +86,7 @@ public class CopilotService {
         vars.put("policyChunksBlock", block.toString().trim());
         GuardrailService.Guarded g = guardrails.generate(new LlmRequest(LlmTask.COPILOT_ANSWER, prompts.system(LlmTask.COPILOT_ANSWER),
                 prompts.user(LlmTask.COPILOT_ANSWER, vars), ctx, maxTokens), applicationId);
-        return new Answer(g.json(), g.provider(), g.fallbackUsed(), chunks, g.latencyMs());
+        return new Answer(g.json(), g.provider(), g.model(), g.fallbackUsed(), chunks, g.latencyMs());
     }
 
     /** Facts only - no name, contact or identifier ever enters the prompt. */
@@ -89,6 +99,15 @@ public class CopilotService {
             sb.append("; engine decision ").append(d.decision().decision()).append(" (").append(d.decision().basis()).append(")")
                     .append(", score ").append(d.decision().score()).append(", PD ").append(String.format("%.1f%%", d.decision().pd() * 100))
                     .append(", fraud gate ").append(d.decision().fraud().outcome());
+            if (d.decision().creditLimit() != null) {
+                sb.append("; offer: credit line $").append(d.decision().creditLimit().toPlainString()).append(" at ").append(d.decision().apr()).append("% APR");
+            }
+            if (d.cashflow() != null && d.cashflow().features().get("monthlyIncome") != null) {
+                sb.append("; verified monthly income $").append(d.cashflow().features().get("monthlyIncome"));
+            }
+            if (!d.decision().verificationItems().isEmpty()) {
+                sb.append("; verification items: ").append(String.join(", ", d.decision().verificationItems()));
+            }
             if (!d.decision().reasonCodes().isEmpty()) {
                 sb.append("; principal reasons: ");
                 d.decision().reasonCodes().forEach(r -> sb.append(r.code()).append(" ").append(r.text()).append("; "));

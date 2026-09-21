@@ -153,6 +153,7 @@ export interface Persona {
 export interface CopilotAnswer {
   answer: { answer: string; citations: { doc: string; section: string }[]; confidence: string }
   provider: string
+  model: string | null
   fallbackUsed: boolean
   retrieved: { doc: string; section: string; content: string; similarity: number }[]
   latencyMs: number

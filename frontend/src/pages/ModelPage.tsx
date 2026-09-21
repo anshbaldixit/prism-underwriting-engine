@@ -138,7 +138,7 @@ export default function ModelPage() {
             <div className="kpi"><span className="label">Decisions</span><span className="value">{monitoring.decisions}</span><span className="sub">{Object.entries(monitoring.byDecision as Record<string, number>).map(([k, v]) => `${k.toLowerCase()} ${v}`).join(' · ') || '—'}</span></div>
             <div className="kpi"><span className="label">Mean scoring latency</span><span className="value">{monitoring.meanScoringLatencyMs == null ? '—' : `${Math.round(monitoring.meanScoringLatencyMs)} ms`}</span></div>
             <div className="kpi"><span className="label">Override rate</span><span className="value">{pct(monitoring.overrideRate, 1)}</span></div>
-            <div className="kpi"><span className="label">AI provider</span><span className="value" style={{ fontSize: 15 }}>{aiConfig?.primaryProvider}</span><span className="sub">fallback {aiConfig?.fallbackProvider} · managed guardrail {aiConfig?.managedGuardrail ? 'on' : 'off'}</span></div>
+            <div className="kpi"><span className="label">AI provider</span><span className="value" style={{ fontSize: 15 }}>{aiConfig?.primaryProvider}</span><span className="sub">{aiConfig?.primaryModel} · fallback {aiConfig?.fallbackProvider} · managed guardrail {aiConfig?.managedGuardrail ? 'on' : 'off'}</span></div>
           </div>
           {bands.length > 0 && (
             <ResponsiveContainer width="100%" height={160}>

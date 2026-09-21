@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { get, post } from '../api/client'
 import type { ApplicationDetail, CopilotAnswer, UnderwriterSummary } from '../api/types'
 import { useAuth } from '../auth/AuthContext'
-import { ContributionBars, DecisionBadge, ErrorBox, FileTypeBadge, FraudBadge, ProviderTag, ScoreGauge, money, num, pct } from '../components/ui'
+import { ContributionBars, DecisionBadge, ErrorBox, FileTypeBadge, FraudBadge, ProviderTag, ScoreGauge, money, num, pct, providerLabel } from '../components/ui'
 
 export default function DecisionPage() {
   const { id } = useParams()
@@ -265,7 +265,7 @@ function UnderwriterTools({ d, onChange }: { d: ApplicationDetail; onChange: (d:
               <div className="msg a">
                 {m.a.answer.answer}
                 <span className="cite">
-                  {m.a.answer.citations.map((c) => `${c.doc} › ${c.section}`).join(' · ') || 'no citations'} · confidence {m.a.answer.confidence} · {m.a.provider}{m.a.fallbackUsed ? ' (fallback)' : ''} · {m.a.latencyMs} ms
+                  {m.a.answer.citations.map((c) => `${c.doc} › ${c.section}`).join(' · ') || 'no citations'} · confidence {m.a.answer.confidence} · {providerLabel(m.a.provider).name}{m.a.model ? ` (${m.a.model})` : ''}{m.a.fallbackUsed ? ' · fallback' : ''} · {m.a.latencyMs} ms
                 </span>
               </div>
             </div>

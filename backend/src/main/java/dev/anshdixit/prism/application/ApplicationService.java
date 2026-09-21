@@ -165,7 +165,7 @@ public class ApplicationService {
         ExplanationService.Inputs inputs = new ExplanationService.Inputs(app.getId(), app.getFileType(), bankLinked,
                 app.getRequestedAmount().doubleValue(), app.getStatedAnnualIncome().doubleValue(), score, fraud, outcome, cf, cohort);
         GuardrailService.Guarded notice = explanations.adverseActionNotice(inputs);
-        decision.attachNotice(notice.json().toString(), notice.provider(), notice.validated(), notice.fallbackUsed());
+        decision.attachNotice(notice.json().toString(), notice.label(), notice.validated(), notice.fallbackUsed());
         decisions.save(decision);
 
         app.setStatus(switch (outcome.decision()) {
@@ -175,7 +175,7 @@ public class ApplicationService {
         applications.save(app);
         log.info("Application {} -> {} ({}), score {}, PD {}, fraud {} - scoring {} ms, notice via {} in {} ms",
                 app.getId(), outcome.decision(), outcome.basis(), score.score(), String.format("%.3f", score.pd()), fraud.outcome(),
-                scoringLatency, notice.provider(), notice.latencyMs());
+                scoringLatency, notice.label(), notice.latencyMs());
         return toDetail(app, decision, categorised, cf, cohort, true);
     }
 
@@ -208,7 +208,7 @@ public class ApplicationService {
         SimilarApplicantService.Cohort cohort = app.getProfileText() == null ? null : similar.findSimilar(app.getProfileText(), 5);
         GuardrailService.Guarded summary = explanations.underwriterSummary(new ExplanationService.Inputs(app.getId(), app.getFileType(), app.isBankLinked(),
                 app.getRequestedAmount().doubleValue(), app.getStatedAnnualIncome().doubleValue(), score, fraud, outcome, cf, cohort));
-        d.attachSummary(summary.json().toString(), summary.provider());
+        d.attachSummary(summary.json().toString(), summary.label());
         decisions.save(d);
         return summary.json();
     }
