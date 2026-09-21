@@ -60,7 +60,7 @@ cd backend && ./mvnw test        # 34 unit tests + a Testcontainers end-to-end f
 cd frontend && npx tsc -p tsconfig.app.json --noEmit && npm run build
 ```
 
-Notable tests: `ScorecardEngineTest` proves the Java engine reproduces the Python export's score, PD and reason codes on 300 hold-out rows; `LlmOutputValidatorTest` proves a hallucinated or omitted reason code is rejected; `ApplicationFlowIT` runs login → submit → decision → underwriter summary → copilot against a real pgvector database.
+Notable tests: `ScorecardEngineTest` proves the Java engine reproduces the Python export's score, PD and reason codes on 300 hold-out rows; `LlmOutputValidatorTest` proves a hallucinated or omitted reason code is rejected; `ApplicationFlowTest` runs login → submit → decision → underwriter summary → copilot against a real pgvector database.
 
 ### Retrain the model
 

@@ -39,7 +39,7 @@ import static org.assertj.core.api.Assertions.assertThat;
         "prism.ai.provider=offline",
         "prism.ai.embedding-provider=offline"})
 @AutoConfigureTestRestTemplate
-class ApplicationFlowIT {
+class ApplicationFlowTest {
 
     @Container
     @ServiceConnection
