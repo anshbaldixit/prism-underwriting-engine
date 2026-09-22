@@ -40,7 +40,9 @@ def wait_until_ready(timeout_s: int = 600) -> None:
 
 def main():
     wait_until_ready()
-    token = call("/api/auth/login", {"username": "applicant", "password": PASSWORD})["token"]
+    # Submit as the underwriter: the applicant's copy of a decision is role-filtered by the API (no basis, gate
+    # outcome or fired rules), and this printout wants all of it.
+    token = call("/api/auth/login", {"username": "underwriter", "password": PASSWORD})["token"]
     personas = json.load(open(os.path.join(ROOT, "backend", "src", "main", "resources", "demo", "personas.json")))
     print(f"{'persona':24} {'expected':44} {'decision':8} {'basis':22} {'score':>5} {'PD':>6} {'fraud':8} {'limit':>7} {'ms':>4}")
     for p in personas:
